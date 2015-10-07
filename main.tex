@@ -23,28 +23,14 @@
 
 \reader{Prof.~Ken Anderson}		%  2nd person to sign thesis
 \readerThree{Prof.~Shaun Kane}		%  3rd person to sign thesis
-\readerFour{Prof. Qin Lv}
-\readerFive{Prof. Danielle Szafir}
+\readerFour{Prof. ~Qin Lv}
+\readerFive{Prof. ~Danielle Szafir}
 
-\abstract{  \OnePageChapter	% because it is very short
+\input{abstract.tex}
 
-	Often the abstract will be long enough to require
-	more than one page, in which case the macro
-	``$\backslash$OnePageChapter'' should {\it not}
-	be used.
+%\input{dedication.tex}
 
-	But this one isn't, so it should.
-	}
-
-\dedication[Dedication]{	% NEVER use \OnePageChapter here.
-	To all of the fluffy kitties.
-	}
-
-\acknowledgements{	\OnePageChapter	% *MUST* BE ONLY ONE PAGE!
-	Here's where you acknowledge folks who helped.
-	But keep it short, i.e., no more than one page,
-	as required by the Grad School Specifications.
-	}
+%\input{acknowledgement.tex}
 
 \ToCisShort	% use this only for 1-page Table of Contents
 
@@ -61,8 +47,15 @@
 \begin{document}
 
 \input macros.tex
-\input{chapter1.tex}
-\input{chapter2.tex}
+\input{introduction.tex}
+\input{related-work.tex}
+\input{mining-design-changes.tex}
+\input{sieveable.tex}
+\input{findings.tex}
+\input{viz.tex}
+%\input{conclusion.tex}
+\input{proposal.tex}
+
 
 %%%%%%%%%   then the Bibliography, if any   %%%%%%%%%
 \bibliographystyle{plain}	% or "siam", or "alpha", etc.
