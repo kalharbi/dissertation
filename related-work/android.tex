@@ -1,0 +1,17 @@
+\section{Android Applications}
+Android applications are often written using the Android software kit (SDK) in the Java programming language.
+In addition, parts of the application code can be written in native languages such as C and C++ using the Native Development Kit (NDK).
+Android provides a rich framework with various APIs for third party developers and a set of tools to build and compile the application source code along with its resources into an Android package file (APK).
+The APK file is an archive file in ZIP format with a .apk file extension.
+An application developer generates a certificate to digitally sign the application before releasing it on the marketplace for Android devices.
+When publishing the app to the Google Play store, the official marketplace, the application developer enters information in the app store listing page to describe and promote the application.
+Users can search for applications in the marketplace and install the APK file to their devices.
+Applications in the marketplace are uniquely identified using a package name field.
+Android uses the Java package naming conventions to uniquely identify applications by their package names.
+In general, developers use a package name that begin with their reversed Internet domain name (e.g., com.airbnb.android).
+Developers can update the APK file with a newer version and change the store listing details page at any time.
+Android requires applications to define version information, so it can be used when releasing or upgrading the APK file.
+Two version values are available in Android: a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
+
+\subsection{The Visual Design of Android Applications}
+All Android applications are built using two basic user interface (UI) elements: Views and ViewGroup elements. Views represent a single UI component (e.g., input elements, text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, Relative- Layout, etc.). UI elements are usually defined in static XML layout files. The app content (e.g., text, images, animations, etc.) is usually stored in XML files within special directories and embedded using special XML tags and attributes. The Android framework parses the layout XML files into a Document Object Model (DOM) tree, performs pre-processing on the tree at build time, and inflates the screen with the visual rendering of the lay- out. The XML layout files provide a complete specification for the Android framework engine to render the user interface. Even though the UI of An- droid applications can be created or modified dynamically at runtime, for many applications the layout files structure provides a close approximation of what the visual UI should look like.
