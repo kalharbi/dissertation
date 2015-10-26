@@ -14,4 +14,55 @@ Android requires applications to define version information, so it can be used w
 Two version values are available in Android: a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
 
 \subsection{The Visual Design of Android Applications}
-All Android applications are built using two basic user interface (UI) elements: Views and ViewGroup elements. Views represent a single UI component (e.g., input elements, text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, Relative- Layout, etc.). UI elements are usually defined in static XML layout files. The app content (e.g., text, images, animations, etc.) is usually stored in XML files within special directories and embedded using special XML tags and attributes. The Android framework parses the layout XML files into a Document Object Model (DOM) tree, performs pre-processing on the tree at build time, and inflates the screen with the visual rendering of the lay- out. The XML layout files provide a complete specification for the Android framework engine to render the user interface. Even though the UI of An- droid applications can be created or modified dynamically at runtime, for many applications the layout files structure provides a close approximation of what the visual UI should look like.
+All Android applications are built using two basic user interface (UI) elements: Views and ViewGroup elements.
+Views represent a single UI component (e.g., input elements, text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, RelativeLayout, etc.).
+UI elements are usually defined in static XML layout files. The app content (e.g., text, images, animations, etc.) is usually stored in XML files within special directories and embedded using special XML tags and attributes.
+The Android framework parses the layout XML files into a Document Object Model (DOM) tree, performs pre-processing on the tree at build time, and inflates the screen with the visual rendering of the layout.
+The XML layout files provide a complete specification for the Android framework engine to render the user interface.
+The UI of Android applications can be constructed entirely at runtime; however, for most applications the UI is implemented in static XML layout files and Java code is involved to enhance the interactive elements that make up the app UI.
+For example, to implement a navigation drawer, the developer would need to define the drawer layout, initialize the drawer list, and handle navigation click events (see figure ~\ref{fig:figure_ui_example}).
+
+\begin{figure} [ht]
+	\centering
+
+\begin{minted}{xml}
+$ main_layout.xml
+<android.support.v4.widget.DrawerLayout
+       xmlns:android="http://schemas.android.com/apk/res/android"
+       android:id="@+id/drawer_layout"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent">
+       <FrameLayout
+           android:id="@+id/content_frame"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent" />
+       <ListView android:id="@+id/main_drawer"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:background="#111"/>
+</android.support.v4.widget.DrawerLayout>
+\end{minted}
+\begin{minted}{java}
+$ MainActivity.java
+public class MainActivity extends Activity {
+    private String[] mMenuItems;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mMenuItems = getResources().getStringArray(R.array.menu_items);    
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.main_layout);
+        mDrawerList = (ListView) findViewById(R.id.main_drawer);
+        
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+            R.layout.drawer_list_item, mMenuItems));
+
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+    }
+}
+\end{minted}
+\caption{A snppiet of a drawer menu defined in an XML file and intialized in Java code.}
+\label{fig:figure_ui_example}
+\end{figure}
