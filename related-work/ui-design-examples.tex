@@ -1,0 +1,46 @@
+\section{User Interface Design Examples}
+User Interface design is often considered hard and challenging. Designers use various methods and techniques during the creative design process including: a) The use of paper prototypes \cite{newman_2000_DIS, klemmer_2001_UIST}. 
+b) The use of storyboarding and wireframing \cite{newman_2000_DIS, wahid_2011_CHI}. 
+c) The use of reusable design solutions (e.g., templates, design patterns) \cite{jacobs_2003_TOG, gibson_2005_WWW, ritchie_2011_CHI}.
+d) The use of interactive sketching tools \cite{landay_1995_CHI, lin_2002_CHI, Newman_2003_HCI, sezgin_2006_GRAPH}.
+e) The use of inspirational curated examples \cite{purcell_1992_KBS, herring_2009_CHI, lee_2010_CHI, ritchie_2011_CHI, miller_2014_ASME}.
+Several lines of research were developed around these methods and largely used small controlled studies to evaluate their effectiveness.
+
+Prior research have studied the use of examples to draw inspirations and aid designers in the design process.
+The benefits of design examples are often cited as: 
+a) Exploring alternative designs, 
+b) evaluate a design against other designs, 
+c) improving the communication between designers and clients, 
+d) identifying the novelty of the design, 
+e) An effective method for validating the design \cite{purcell_1992_KBS, herring_2009_CHI, lee_2010_CHI, ritchie_2011_CHI, chang_2012_CHI, miller_2014_ASME}.
+Herring et al. \cite{herring_2009_CHI} studied how designers use examples and the difficulties they faced when searching, sharing, and using design examples.
+Miller et al. \cite{miller_2014_ASME} studied how professional designers find design examples.
+They found that designers had several difficulties to find what they are looking for and turning that into a search query.
+This forces designers to use search terms that are not directly related to what they are looking for.
+For instance, a search query for the term "large navbar" usually returns results to question-and-answer websites or tutorials that describe the implementation details of "navbars".
+These findings suggested the need for better tools and retrieval systems to support designers in retrieving example.
+
+
+Attempting to address this pressing need, data-driven approaches have been applied to identifying design examples.
+HCI researchers have realized that in order to increase the usefulness of design examples to designers, a new generation of design based search engines needs to be developed.
+This manifested from the limitations of existing search engines that are designed to deal with text rather than visual structure.
+
+Several tools have been developed to aid designers in finding and using a curation of design examples.
+The Adaptive Ideas tool \cite{lee_2010_CHI} is a browser extension that enables designers to view design examples of a manually curated corpus of 250 web design examples.
+It allows designers to borrow design elements from multiple design examples while designing their websites.
+D.tour \cite{ritchie_2011_CHI} is a search tool for finding web design examples.
+The tool consists of a curated database of 300 web pages.
+Users can search for similar design examples or use textual design terms.
+WebCrystal \cite{chang_2012_CHI} is a tool that adds visualization and text to explain how design examples are constructed allowing novice web designers to use them in their own web pages.
+Bricolage \cite{kumar_2011_CHI} is an algorithm for retargeting content between web pages.
+It creates a mapping between the visual elements of web pages allowing designers to transfer the style from one page to another page.
+Bricolage trains a model on a corpus of design mapping of 50 web pages collected from crowdsourced workers to automatically transfer the design between web pages.
+Webzeitgeist \cite{kumar_2013_CHI} is a large-scale platform for mining design data comprising a dataset of over 100,000 web pages.
+It provides a custom JSON-like design query language (DQL) that can be used to find design examples by the visual appearance and the DOM structure of web pages.
+
+
+The HCI literature has also examples on the use of crowds to complement the data-driven approaches in finding more relevant design examples \cite{kumar_2011_CHI, spirin_2014_WWW}, understand aesthetic preferences \cite{reinecke_2013_CHI}, and design demographics \cite{reinecke_2014_CHI}. 
+Reinecke et al. \cite{reinecke_2013_CHI} collected 450 web pages and obtained subjective ratings from 548 volunteers about the visual complexity and colorfulness of these pages.
+They were able to develop computational models that accurately measure the perceived visual complexity and colorfulness of website screenshots.
+Extending this work, Reinecke and Gajos \cite{reinecke_2014_CHI} collected 2.4 million ratings from 40,000 diverse participants for 430 websites to identify the demographical factors that influence visual preferences. 
+They developed a computational model that predicts users perception of visual aesthetics for specific demographic group.
