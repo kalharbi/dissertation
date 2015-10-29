@@ -446,7 +446,6 @@ The reason behind the Up navigation pattern's low adoption rate could be that ap
 The Up navigation button was common in apps that have several sibling activities in the hierarchy (e.g., email clients, shopping apps), which may not be the case for most apps.
 
 \subsection{Navigation Drawers}
-
 \subsubsection{Motivation}
 Navigation Drawer is a hidden panel that displays the app's main navigation menu. 
 It helps users quickly navigate through the structure of the app. 
@@ -456,18 +455,15 @@ When the user taps on the top-left app's icon or swipes from the left to the rig
 In order to use the Navigation Drawer, developers need to create a layout with a \textit{DrawerLayout} as the root \textit{ViewGroup} element with two children elements. 
 The first child is the Layout element that represents the content when the drawer is hidden and the second is the actual drawer that slides in the Navigation Drawer panel. 
 We queried the graph database to find apps that have layouts that starts with a \textit{DrawerLayout} element as a root element with two child views.
-
 \subsubsection{Results}
 We found 1,183 apps used the Navigation Drawer. 
-Among them, 771 (65.2\%) added it for the first time and only 37 (3.1\%) of the apps stopped using this pattern. Figure~\ref{fig:fig_drawer}
+Among them, 771 (65.2\%) added it for the first time and only 37 (3.1\%) of the apps stopped using this pattern. Figure~\ref{fig:fig_drawer} shows an example of an app before and after using this pattern.
 \begin{figure}[!t]
 	\centering
 	\includegraphics{figures/design-pattern-changes/drawer}
 	\caption{Example of an app titled ``Carango - Car Management'' that shows two versions before (left) and after (right) using the Navigation Drawer pattern.}
 	\label{fig:fig_drawer}
 \end{figure}
-shows an example of an app before and after using this pattern.
-
 \subsubsection{Discussion}
 Navigation drawer is relatively less common than other navigation patterns. 
 We speculate the reason is two-folds. 
@@ -475,8 +471,8 @@ First, implementing this pattern requires a high degree of customization by deve
 We also found that the majority of the apps using the Navigation Drawer were recent adopters (771 out of 1183), which suggests Navigation Drawer a relatively new design pattern.
 
 \section{Discussion and Future Work}
-\begin{table}
-	\begin{tabular}{| >{\centering\arraybackslash}m{2cm} | m{1cm} | m{1.2cm} | m{1.2cm} | m{1.1cm} |}
+\begin{table}[!htbp]
+	\begin{tabular}{| >{\centering\arraybackslash}m{6cm} | m{2cm} | m{2cm} | m{2cm} | m{2cm} |}
 		\hline
 		\centering Design Pattern & Usage & First \ Time & Changes & No Changes \\
 		\hline
