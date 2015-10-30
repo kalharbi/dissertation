@@ -145,7 +145,7 @@ If it does not already exist in the repository, the crawler downloads and saves 
 \par Once the APK file is downloaded, the apps crawler notifies the listing details web crawler to download the most recent app listing details web page.
 The listing details web crawler is written in Ruby.
 It generates a URL using the package name and downloads both the HTML page and the resources of the listing details web page.
-Finally, another process runs to decode the APK file using apktool \footnote{https://github.com/iBotPeaches/Apktool}, an open-source reverse-engineering tool.
+Finally, another process runs to decode the APK file using Apktool \cite{apktool}, an open-source reverse-engineering tool.
 When the APK file is decoded, we get a directory tree of app files that make up the app.
 
 \subsection{Feature Extractors}

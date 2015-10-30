@@ -137,9 +137,9 @@ Example:
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<LinearLayout>
-	<Button/>
-	</LinearLayout>
+	    <LinearLayout>
+	       <Button/>
+	    </LinearLayout>
 	RETURN app
 \end{minted}
 The \textit{MATCH} clause defines the apps to match for the given search conditions.
@@ -149,23 +149,19 @@ Multiple search conditions can be combined together allowing for a deep search a
 The \textit{RETURN} clause defines the subset of fields to include in the results.
 Multiple levels search conditions can be added to the \textit{WHERE} clause.
 For example, a search query for apps developed by \textit{Google}, have a \textit{LinearLayout} with a child \textit{Button}, use the SEND\_SMS permission, and call the takePicture API call, will look like:
-
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<developer>Google Inc.</developer>
-	<LinearLayout>
-	<Button/>
-	</LinearLayout>
-	<uses-permission android:name=
-	"android.permission.SEND_SMS"/>
-	<code class="android.hardware.Camera" 
-	method="takePicture"/>
+    	<developer>Google Inc.</developer>
+	    <LinearLayout>
+	       <Button/>
+     	</LinearLayout>
+     	<uses-permission android:name="android.permission.SEND_SMS"/>
+     	<code class="android.hardware.Camera" method="takePicture"/>
 	RETURN app
 \end{minted}
 
 \underline{\textbf{Query Parser}}
-
 When a query is submitted to Sieveable, it parses the search condition parts to determine their query levels (listing, UI, manifest, and code).
 Sieveable maintains a set of dictionaries to lookup and extract search condition parts by their levels.
 In particular, it maintains three dictionaries: a predefined set of listing details fields, and a set of manifest XML elements, and a single XML element named code for code related queries.
@@ -173,7 +169,6 @@ If an XML element in the query condition is not defined in any of the dictionari
 For example, in the previous search query, Sieveable parses the \textit{WHERE} clause part and groups the query parts by their levels. This results in four query parts: a) listing details query for the \texttt{<developer>} tag, b) manifest query for the \texttt{<uses-permissions>} tag, c) code query for the \texttt{<code>} tag, and UI query for the remaining elements (LinearLayout and its child). Sieveable sends these query parts to the query executor.
 
 \underline{\textbf{Query Executor}}
-
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{figures/sieveable-deep-search/queryExecution}
@@ -214,7 +209,7 @@ The query return clause includes only a single app field, so Sieveable will retu
 \section{System Implementation}
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=17cm, height=7cm]{figures/sieveable-deep-search/architecture}
+	\includegraphics[width=17cm, height=10cm]{figures/sieveable-deep-search/architecture}
 	\caption{Sieveable system architecture.}
 	\label{fig:fig_architecture}
 \end{figure*}
@@ -235,24 +230,22 @@ We parse the listing details fields and save them in another MongoDB collection.
 
 \subsection{Feature Extractors}
 We built a set of command line tools to extract features from the APK files.
-First, we use apktool\footnote{https://code.google.com/p/android-apktool}, an open-source reverse engineering tool, to decode the apps and obtain their source files.
+First, we use apktool \cite{apktool}, an open-source reverse engineering tool, to decode the apps and obtain their source files.
 Second, we run a custom UI parser that parses layout files and resolves any references to external resources (e.g., \texttt{android:text="@string/variable"}) or embedded layouts (using \texttt{<include/>} and \texttt{<merge/>} tags).
 The parser produces a single XML file that contains the entire app UI tree, including all files.
 This is especially important when performing DOM matching queries since it eliminates the need to load multiple layout files into memory when performing such queries.
 Below is a snippet from an XML file generated for the YouTube app.
 
 \begin{minted}{xml}
-<App name="com.google.android.youtube" 
-version_code="5021">
-<Directory directory_name="layout">
-<File file_name="activity_feed_item.xml">
-<RelativeLayout>
-<ImageView 
-android:id="@id/channel_avatar"/>
-</RelativeLayout>
-...
-</File>
-</Directory>
+<App name="com.google.android.youtube" version_code="5021">
+    <Directory directory_name="layout">
+       <File file_name="activity_feed_item.xml">
+          <RelativeLayout>
+             <ImageView android:id="@id/channel_avatar"/>
+           </RelativeLayout>
+           ...
+       </File>
+    </Directory>
 </App>
 \end{minted}
 
@@ -301,8 +294,26 @@ This is useful when submitting queries and asking Sieveable to return the entire
 By streaming results, client applications do not have to wait until the query completes its execution. 
 For an easy query access, Sieveable has a web client application that interacts with the RESTful API.
 
-\section{Query Language Specification}
+\section{Comparison to Prior Work}
+%TODO
 
-\section{Implementation}
+\section{Discussion and Future Work}
+This chapter presented Sieveable, a multi-view search engine for apps on a large-scale.
+It discussed the importance of searching and mining apps across multiple views.
+For the first time, Sieveable can help users execute deep search queries (illustrated in Chapter \ref{ch:findings_chapter}) and apply data driven approaches with a holistic view of apps at large-scale that could yield valuable results.
+This work has a number of directions for future work:
 
-\section{Discussion}
+\begin{itemize}
+	
+	\item\underline{\textit{Deep Analysis:}} Sieveable opens up a wide opportunity to apply an in-depth analysis of mobile apps across multiple levels to investigate emergent trends in mobile apps development.
+	
+	\item \underline{\textit{Logical Query Operators:}} Search query conditions can be joined using OR, AND, NOT, NOR operators.
+	
+	\item \underline{\textit{Faceted Search:}} Applying multiple listing details filters could help users explore search results and arrange them into categories.
+	
+	\item\underline{\textit{Search Goals:}} Sieveable has been deployed and used in a distributed computing infrastructure.
+	Releasing it to users and collecting their submitted queries could help us understand interesting search goals \cite{rose_2004_WWW_understanding} and realize new applications.
+	
+\end{itemize}
+For more information on using Sieveable including source code access and over 100 query examples, please visit:
+\url{https://github.com/sikuli/sieveable}
