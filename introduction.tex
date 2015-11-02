@@ -1,13 +1,35 @@
 \chapter{Introduction}
 \label{ch:intro__chapter}
 Modern mobile platforms feature a distribution platform for apps called marketplaces (or app stores).
-Third-party developers can publish their apps for free or sell them to users.
-Users use marketplaces to discover, purchase, download, and update apps. For example, as of November 2015, the number of apps in the Google Play Store is over 1.7 million apps \cite{appbrain_play_apps}.
+App marketplaces are online software distribution stores for developers to publish their apps for free or sell them and users to discover, purchase, download, and update apps.
+The popularity of mobile devices and the advances in their operating systems have led to significant increase in the number of apps published in marketplaces.
+For example, as of November 2015, the number of apps in the Google Play Store is over 1.7 million apps \cite{appbrain_play_apps}.
 These apps have become a valuable data source to mine and extract insight from in both academia and industry.
 In the recent years, there has been a noticeable amount of research activities on how to extract meaningful insights from apps data. 
-In particular, three single views have dominated the research in mining mobile apps.
-First, researchers have mined the listing details data of apps such as ratings and user reviews to analyze user's sentiment and help developers take data-driven informed decisions \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
-Some have created commercial services for app developers and publishers \cite{appfigures,applause,appannie}
 
+The research in mining mobile apps is dominated by three single views.
+First, researchers have mined the listing details data of apps such as ratings and user reviews to perform sentiment analysis and help developers make informed decisions supported by data \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
+Others have created commercial services for app developers and publishers \cite{appfigures,applause,appannie}.
+Second, researchers have mined the user interface data such as styles and layouts of thousands of apps to gain insights into their design patterns \cite{shirazi_EICS_2013,Alharbi_2015_MobileHCI}.
+Third researchers have also mined the source code of apps to learn about malicious behavior and protect users' privacy-sensitive data (e.g., \cite{zhou_2012_SP_dissecting,lu_2012_CCS,Arzt_2014_PLDI}).
+What is missing in prior research is an approach that takes a holistic view of the apps encompassing these three views. We pursue a scalable and more general approach that enables exploring data that is hidden from standard search engines.
+
+%TODO: Add a paragraph that explains why a single view does not work
+
+This dissertation makes two major contributions. 
+First, it presents a holistic approach for mining apps encompassing multiple views of the apps, manifested in a multi-view search engine called \textit{Sieveable}.
+Sieveable indexed more than three hundred thousand apps (including historical versions) at an unprecedented level of depth (listing details, user interface, code, and back-end services).
+Second, it demonstrates the utility of the approach taken by implementing data-driven systems on top of Sieveable to conduct diverse types of analyses.
 
 \section{Overview}
+This dissertation is divided into 7 chapters. Chapter \ref{ch:related_work_chapter}
+
+Chapter \ref{ch:mining_design_changes_chapter}
+
+Chapter \ref{ch:sieveable_chapter}
+
+Chapter \ref{ch:findings_chapter}
+
+Chapter \ref{ch:evaluation}
+
+Finally, chapter \ref{ch:propsal}
