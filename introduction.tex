@@ -1,20 +1,30 @@
 \chapter{Introduction}
 \label{ch:intro__chapter}
-Modern mobile platforms feature a distribution platform for apps called marketplaces (or app stores).
+Modern mobile platforms feature a distribution platform for applications called marketplaces (or app stores).
 App marketplaces are online software distribution stores for developers to publish their apps for free or sell them and users to discover, purchase, download, and update apps.
 The popularity of mobile devices and the advances in their operating systems have led to significant increase in the number of apps published in marketplaces.
 For example, as of November 2015, the number of apps in the Google Play Store is over 1.7 million apps \cite{appbrain_play_apps}.
 These apps have become a valuable data source to mine and extract insight from in both academia and industry.
-In the recent years, there has been a noticeable amount of research activities on how to extract meaningful insights from apps data. 
 
-The research in mining mobile apps is dominated by three single views.
+In the recent years, there has been a noticeable amount of research activities on how to extract meaningful insights from apps data. 
+The research in mining mobile apps has been dominated by three single views.
 First, researchers have mined the listing details data of apps such as ratings and user reviews to perform sentiment analysis and help developers make informed decisions supported by data \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
-Others have created commercial services for app developers and publishers \cite{appfigures,applause,appannie}.
-Second, researchers have mined the user interface data such as styles and layouts of thousands of apps to gain insights into their design patterns \cite{shirazi_EICS_2013,Alharbi_2015_MobileHCI}.
-Third researchers have also mined the source code of apps to learn about malicious behavior and protect users' privacy-sensitive data (e.g., \cite{zhou_2012_SP_dissecting,lu_2012_CCS,Arzt_2014_PLDI}).
-What is missing in prior research is an approach that takes a holistic view of the apps encompassing these three views. We pursue a scalable and more general approach that enables exploring data that is hidden from standard search engines.
+Others have created tools and commercial services to assist app developers and publishers in better understanding of listing details data \cite{appfigures,applause,appannie}.
+Second, researchers have mined user interface data such as styles and layouts of thousands of apps to gain insights into their design patterns \cite{shirazi_EICS_2013,Alharbi_2015_MobileHCI}.
+Third researchers have also mined the source code of apps to learn about malicious behavior and protect users' privacy-sensitive data \cite{zhou_2012_SP_dissecting,lu_2012_CCS,Arzt_2014_PLDI}.
+What is missing in prior research is an approach that takes a holistic view of the apps encompassing these three views. 
+
 
 %TODO: Add a paragraph that explains why a single view does not work
+This dissertation pursues a more deep search approach that takes a holistic view of the apps over time and can potentially accomplish what is currently not possible in a single view approachwide-ranging.
+In UI design analysis, dynamic components created at runtime are often missed because they were defined in the program rather than in the layout files.
+This shortcoming can be solved by considering both the design and program views simultaneously.
+In commercial analysis, sentiment analysis of user comments in the public view can be done to understand users' opinions about the apps, but it is often difficult to link these opinions to specific features.
+By incorporating the design view and program view, one can potentially establish a causal relationship between a new feature (or a bug) and the onset of certain opinions.
+In security analysis, a function could be determined, through programmatic analysis, to be triggering a sensitive operation, such as sending an SMS message or taking a photo.
+But it is often hard to judge if the sensitive operation is warranted from the program view alone.
+By also taking a view of the design, one may examine which button may be linked to this sensitive operation and whether the button's label legitimizes such use: for example, ``Take a Picture'' for camera operations.
+We pursue a scalable and more general approach that enables exploring data that is hidden from standard search engines.
 
 This dissertation makes two major contributions. 
 First, it presents a holistic approach for mining apps encompassing multiple views of the apps, manifested in a multi-view search engine called \textit{Sieveable}.
@@ -22,14 +32,11 @@ Sieveable indexed more than three hundred thousand apps (including historical ve
 Second, it demonstrates the utility of the approach taken by implementing data-driven systems on top of Sieveable to conduct diverse types of analyses.
 
 \section{Overview}
-This dissertation is divided into 7 chapters. Chapter \ref{ch:related_work_chapter}
-
-Chapter \ref{ch:mining_design_changes_chapter}
-
-Chapter \ref{ch:sieveable_chapter}
-
-Chapter \ref{ch:findings_chapter}
-
-Chapter \ref{ch:evaluation}
-
-Finally, chapter \ref{ch:propsal}
+This thesis proposal is divided into 7 chapters. 
+Chapter \ref{ch:related_work_chapter} reviews prior related work in the area of web and mobile mining.
+Chapter \ref{ch:mining_design_changes_chapter} introduces a data-mining approach for mining user interface design pattern changes and shows its utility by applying it to thousands of Android apps.
+Chapter \ref{ch:sieveable_chapter} introduces Sieveable, a deep search engine for Android apps. 
+This chapter discusses the technical requirements of designing the search engine and the process of indexing apps at multiple levels.
+Chapter \ref{ch:findings_chapter} presents several illustrative search queries across multiple levels that demonstrates Sieveable's capabilities and how it enables different types of deep analyses of mobile apps.
+Chapter \ref{ch:evaluation} presents a plan for evaluating the main contribution for this thesis. 
+Finally, chapter \ref{ch:propsal} concludes with a discussion on the main contributions of this thesis and the path that will be taken for some potential future work.
