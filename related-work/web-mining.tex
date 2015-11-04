@@ -1,16 +1,23 @@
 \subsection{Web Mining}
 Web mining is an area of research that involves the use of data mining techniques to automate the discovery and extraction of information from the World Wide Web \cite{etzioni_1996_Communication_ACM}.
+The use of data mining techniques has proven to be a powerful approach for extracting knowledge and detecting new patterns from large collections on the Web.
 The web mining research can be classified into three main categories: content mining, structure mining, and usage mining \cite{madria_1999_Springer,kosala_2000_Survey}.
 
-Web content mining involves the use of various techniques due to the different kinds of content on the web (e.g., text, and multimedia data.).
+Web content mining involves the use of various techniques due to the different kinds of content on the web (e.g., text, images, and videos).
 Research in mining text-based content such as news articles often represents the unstructured text documents as bag of words or vector representation, n-gram, phrase based, or term based representation \cite{manning_2008_intro_to_IR}.
-The applications of mining text content includes text classification, clustering, and finding patterns.
-Mining multimedia data has been a major focus for researchers  and involve the use of various information retrieval techniques \cite{Wang_2011_SIGIR, Wu_2011_WSDM}.
+The applications of mining text content include text classification, clustering, and  patterns discovery.
+The study of mining text-based content overtime is called Temporal Text Mining (TTM).
+It is concerned with discovering patterns in temporal documents and has many applications such as events tracking \cite{ha_2009_IR}, summarizing \cite{Mei_2005_KDD}, and detecting \cite{huang_2014_WWW}.
+The Web is regarded as the largest database of images and videos.
+Advances in computer vision and image processing techniques have enabled data mining researchers to use the extracted features to discover new patterns. \cite{Wang_2011_SIGIR, Wu_2011_WSDM}.
 
 Structure mining research focuses on extracting information from the underling hyperlinks graph structure of the Web itself.
 Applications of web structure mining include Web pages ranking, categorization, and community discovery.
-A number of algorithms have been proposed to model the graph structure of the hyperlinks.
-The Hyperlink-Induced Topic Search (HITS) algorithm \cite{Kleinberg_1999_JACM}, PageRank \cite{Brin_1998_PageRank}, and Clever \cite{chakrabarti_1999_Computer} are all examples of algorithms that rates Web pages based on quality or importance factors. 
+A number of algorithms have been proposed to model the graph structure of hyperlinks and rate Web pages based on quality or importance factors. Examples include the Hyperlink-Induced Topic Search (HITS) algorithm \cite{Kleinberg_1999_JACM}, PageRank \cite{Brin_1998_PageRank}, and Clever \cite{chakrabarti_1999_Computer}.
 
 Web usage mining involves collecting and analyzing server and browser logs data that result from users interacting with Web pages.
+Researchers have used different kinds of data in Web usage mining 
+\cite{srivastava_2000_KDDNewsLetter}.
+User's registration data are used to provide demographic information about the users interacting with Web pages.
+Click-stream data is a sequential series of page clicks and used to provide insights into the path the user takes when navigating through Web pages.
 The applications of mining usage data include modeling user profiles, collaborative filtering, recommender systems, and discovering navigation patterns.
