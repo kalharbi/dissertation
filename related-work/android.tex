@@ -16,13 +16,13 @@ Android requires applications to define version information, so it can be used w
 In addition to package names, Android uses two version values. 
 a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
 
-\subsection{The Visual Design of Android Applications}
-All Android applications are built using two basic user interface (UI) elements: Views and ViewGroup elements.
-Views represent a single UI component (e.g., input elements, text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, RelativeLayout, etc.).
+\subsection{User Interface Layout}
+The user interface (UI) of Android applications is built using two basic UI elements, View and ViewGroup elements.
+Views represent a single UI component (e.g., input elements such as text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, RelativeLayout, etc.).
 UI elements are usually defined in static XML layout files. The app content (e.g., text, images, animations, etc.) is usually stored in XML files within special directories and embedded using special XML tags and attributes.
 The Android framework parses the layout XML files into a Document Object Model (DOM) tree, performs pre-processing on the tree at build time, and inflates the screen with the visual rendering of the layout.
 The XML layout files provide a complete specification for the Android framework engine to render the user interface.
-The UI of Android applications can be constructed entirely at runtime; however, for most applications the UI is implemented in static XML layout files and Java code is involved to enhance the interactive elements that make up the app UI.
+The UI of Android applications can be constructed entirely at runtime; however, for most applications the UI is implemented in static XML layout files, and Java code is used to add content or enhance interactive UI elements.
 For example, to implement a navigation drawer, the developer would need to define the drawer layout, initialize the drawer list, and handle navigation click events (see listing~\ref{lst:ui_example}).
 
 \begin{listing}[!htb]
@@ -67,3 +67,7 @@ public class MainActivity extends Activity {
 \end{minted}
 	\label{lst:ui_example}
 \end{listing}
+
+\subsection{Reverse Engineering Android Applications}
+According to the taxonomy of Chikofsky and Cross \cite{chikofsky_1990_reverse}, reverse engineering is defined as ``the process of analyzing a subject system to identify the system's components and their interrelationships and create representation of the system in another form or at a higher level of abstraction.''
+The analysis presented in this thesis is performed on closed source Android applications; hence we make use of a reverse engineering tool called \textit{apktool} \cite{apktool} to unpack APK files and decode their resources to their nearly original formats.
