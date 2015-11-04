@@ -70,4 +70,8 @@ public class MainActivity extends Activity {
 
 \subsection{Reverse Engineering Android Applications}
 According to the taxonomy of Chikofsky and Cross \cite{chikofsky_1990_reverse}, reverse engineering is defined as ``the process of analyzing a subject system to identify the system's components and their interrelationships and create representation of the system in another form or at a higher level of abstraction.''
-The analysis presented in this thesis is performed on closed source Android applications; hence we make use of a reverse engineering tool called \textit{apktool} \cite{apktool} to unpack APK files and decode their resources to their nearly original formats.
+The analysis presented in this thesis is performed on third-party, closed source, binary Android applications.
+In order to expose the app’s structure, we make use of a reverse engineering tool called \textit{apktool} \cite{apktool} to unpack APK files and decode their resources to their nearly original formats.
+Running \textit{apktool} on an APK file results in a directory tree that makes up the app.
+The tool disassembles the byte code into \textit{smali} files, which uses an assembler-like syntax based on Jasmin \cite{jasmin_assembler}, a largely used assembly format for the Java Virtual Machine (JVM).
+
