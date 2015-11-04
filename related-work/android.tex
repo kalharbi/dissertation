@@ -4,14 +4,17 @@ In addition, parts of the application code can be written in native languages su
 Android provides a rich framework with various APIs for third party developers and a set of tools to build and compile the application source code along with its resources into an Android package file (APK).
 The APK file is an archive file in ZIP format with a .apk file extension.
 An application developer generates a certificate to digitally sign the application before releasing it on the marketplace for Android devices.
-When publishing the app to the Google Play store, the official marketplace, the application developer enters information in the app store listing page to describe and promote the application.
+When publishing the app to the Google Play store, the official marketplace, the developer provides information for the store listing to describe and promote the application.
 Users can search for applications in the marketplace and install the APK file to their devices.
 Applications in the marketplace are uniquely identified using a package name field.
 Android uses the Java package naming conventions to uniquely identify applications by their package names.
-In general, developers use a package name that begin with their reversed Internet domain name (e.g., com.airbnb.android).
+In general, developers use a package name that begins with their reversed Internet domain name (e.g., com.airbnb.android).
 Developers can update the APK file with a newer version and change the store listing details page at any time.
+The Google Play store only offers the most recent version and does not keep previously submitted versions.
+However, some unofficial or third-party marketplaces maintain an archive for all versions of particular apps.
 Android requires applications to define version information, so it can be used when releasing or upgrading the APK file.
-Two version values are available in Android: a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
+In addition to package names, Android uses two version values. 
+a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
 
 \subsection{The Visual Design of Android Applications}
 All Android applications are built using two basic user interface (UI) elements: Views and ViewGroup elements.
