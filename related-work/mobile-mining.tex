@@ -1,7 +1,8 @@
 \subsection{Mining Mobile Applications}
-Mining mobile apps at large-scale started to be of interest to researchers (\cite{}, see Table~\ref{tab:table_mobile_mining_studies}).
-
-For example, Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app. 
+Mining mobile apps started to be of interest to researchers (\cite{}, see Table~\ref{tab:table_mobile_mining_studies}).
+The very first work to mine and analyze app store data was introduced by Harman et al. \cite{Harman_2012_MSR}.
+They mined app meta-data (listing details data) of over 32,000 apps in the Blackberry app store to find patterns such as a correlation between app rating and download count.
+Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app. 
 They collected listing details data and analyzed the reviews at multiple granularities.
 They found that the lack of attractive design was the largest cause of negative reviews. 
 However, only listing details data were considered and no design and code data were analyzed.
@@ -9,19 +10,33 @@ Viennot et al. \cite{viennot_2014_metrics} developed the largest scale crawler f
 Despite the immense scale, they stored the listing details and source code files as plain-text data and used a full-text search engine to query them.
 This greatly restricted the applicability of their approach to keyword search and left structured data search unsupported (e.g., user interface layout data).
 Shirazi et al. \cite{shirazi_EICS_2013} collected 400 Android apps to analyze the common design patterns of these apps.
-They estimated the complexity of each apps design by counting the number of activities, layout files, and images.
+They estimated the complexity of each app's design by counting the number of activities, layout files, and images.
 They computed descriptive statistics such as the most frequent interface elements and the most common combination of widgets.
+Minelli and Lanza introduced SAMOA \cite{Minelli_2013_CMSREuro}, an analytic platform for mobile apps with the goal to understand the complexity of mobile apps and third-party API usage.
+The platform was among the first attempts to analyze apps at depth (source code structure and listing details) over time.
+However, the platform does not utilize user interface data and used a small dataset of 20 open source apps.
+
+In order to deal with the recent increase in the number of mobile apps, researchers have studied them for various data mining and machine learning applications.
+Chen et al \cite{Chen_2015_WSDM} presented SimApp, a framework for detecting apps similarity based on listing details data using a kernel-based learning algorithm.
+Lin et al. \cite{lin_2014_SIGIR} proposed a framework to improve app  recommendation by incorporating version histories with standard recommendation techniques.
+Zhu et al. \cite{zhu_2013_CIKM} proposed a ranking fraud detection system based on historical app ranking data to detect fraudulent means to boost rate an app in the marketplace.
+AppJoy \cite{yan_2011_MobiSys} is a personalized recommender system for Android apps.
+The system computes a ``usage score'' based on the actual user's usage and uses that as an input for a collaborative filtering algorithm to make personalized recommendations.
 
 \begin{table*}[t]
 	\def\arraystretch{2}
 	\centering
-	\caption{Summary of mining mobile application studies.}
+	\caption{Summary of mining mobile application studies (continued on next page).}
 \begin{tabular}{| c | p{3cm} | p{6cm} | p{2.5cm} | p{1.5cm} |}
 	\hline
-	Domain & Study & Purpose & Depth & Size \tabularnewline
+	Domain & Study & Method/Purpose & Depth & Size \tabularnewline
 	\hline
-	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Privacy}} & Thomas et al \cite{Thomas_2014_ICSE}&
-	Extract privacy requirement from
+	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Privacy}}
+	
+	& 
+	
+	&
+	
 	&
 	
 	&
@@ -29,21 +44,96 @@ They computed descriptive statistics such as the most frequent interface element
 	\tabularnewline
 	\cline{2-5}& 
 	Seneviratne et al. \cite{seneviratne_2015_SIGMobile} &
-	Extract listing detail features for a list of user installed apps to predict user’s gender.&
+	Extract listing detail features for a list of user installed apps to predict user's gender.&
 	Listing details&
 	4,167
 	\tabularnewline
 	\cline{2-5}
-	& Do et al. \cite{Thomas_2014_ICSE} & & &\tabularnewline
+	&  & & &\tabularnewline
 	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Security}} & dagdgadg & & &\tabularnewline
+	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Security}} & 
+	Pandita et al. \cite{Pandita_2013_USENIX} 
+	& 
+	Use NLP techniques to detect whether the app description indicates the app needs to use a particular permission.
+	&
+	Description, API usage, and Manifest file.
+	&
+	581
+	\tabularnewline
 	\cline{2-5}
-	& adfgadgadg & & &\tabularnewline
+	& 
+	Gorla et al \cite{gorla_2014_ICSE}
+	&
+	Analyze and cluster apps by their descriptions and API usages to detect outliers.
+	& 
+	Description and API usage
+	&
+	22,500
+	\tabularnewline
 	\cline{2-5}
 	& adfgfadgdafg & & &\tabularnewline
 	\cline{2-5}
 	& afgdagdfgdg & & &\tabularnewline
 	\hline
+	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Software Engineering}} & 
+	Chen et al. \cite{chen_2014_ICSE}
+	&
+	Analyze app user reviews to extract valuable information for developers.
+	&
+	User reviews
+	&
+	4
+	\tabularnewline
+	\cline{2-5}
+	& SAMOA \cite{Minelli_2013_CMSREuro}
+	& An analytic Platform for mobile apps to analyze the structure of source code over time.
+	& Listing details and source code.
+	& 20
+	\tabularnewline
+	\cline{2-5}
+	&
+	&
+	&
+	&
+	\tabularnewline
+	\cline{2-5}
+	&
+	&
+	&
+	&
+	\tabularnewline
+	\cline{2-5}
+	\hline
+	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Machine Learning}} & 
+	Chen et al \cite{Chen_2015_WSDM} 
+	&
+	A framework for detecting similar apps using an online kernel algorithm.
+	&
+	Listing details
+	&
+	21,624
+	\tabularnewline
+	\cline{2-5}
+	&
+	&
+	&
+	&
+	\tabularnewline
+	\cline{2-5}
+	&
+	&
+	&
+	&
+	\tabularnewline
+	\cline{2-5}
+	&
+	&
+	&
+	&
+	\tabularnewline
+	\cline{2-5}
+	\hline
+	
 \end{tabular}
 	\label{tab:table_mobile_mining_studies}
 \end{table*}
