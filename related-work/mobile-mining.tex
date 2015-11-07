@@ -23,6 +23,46 @@ Zhu et al. \cite{zhu_2013_CIKM} proposed a ranking fraud detection system based 
 AppJoy \cite{yan_2011_MobiSys} is a personalized recommender system for Android apps.
 The system computes a ``usage score'' based on the actual user's usage and uses that as an input for a collaborative filtering algorithm to make personalized recommendations.
 
+\begin{longtable}{|>{\bfseries}l|>{\bfseries}l|*{4}{l|}}
+	\hline
+	\textbf{Domain} & \textbf{Study} & \textbf{Method/Purpose} & \textbf{Depth} & \textbf{Size}  \\
+	\hline
+	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Privacy}}
+	& Numeric
+	& 7.089
+	& 2.710
+	& 3.116\\
+	\cline{2-5}
+	& Alphanumeric   
+	& 4.269          
+	& 1.850       
+	& 2.355\\
+	\cline{2-5}
+	& Bytes
+	& 2.953          
+	& 1.018       
+	& 1.556\\
+	\hline
+	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Security}}
+	& Great capacity 
+	& Great capacity 
+	& Little size 
+	& High read  \\
+	\cline{2-5}
+	&
+	&
+	&
+	&\\
+	\cline{2-5}
+	&
+	&
+	&
+	&\\
+	\hline
+	
+\end{longtable}
+
+
 \begin{table*}[t]
 	\def\arraystretch{2}
 	\centering
@@ -91,8 +131,8 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 20
 	\tabularnewline
 	\cline{2-5}
-	&
-	&
+	& 
+	& 
 	&
 	&
 	\tabularnewline
@@ -114,26 +154,25 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	21,624
 	\tabularnewline
 	\cline{2-5}
-	&
-	&
-	&
-	&
+	& Yin et al. \cite{Yin_2013_WSDM}
+	& A recommender system for recommending new apps to replace already installed ones.
+	& Description
+	& 5,661
 	\tabularnewline
 	\cline{2-5}
-	&
-	&
-	&
-	&
+	& Baeza-Yates et al. \cite{Baeza-Yates_2015_WSDM}
+	& A model for predicting the next installed app the user is going to use. The goal is to improve the usage of home-screen/launcher applications.
+	& Log usage data
+	& 200K users who have 70K unique apps.
 	\tabularnewline
 	\cline{2-5}
-	&
-	&
-	&
-	&
+	& Liu et al.\cite{Liu_2015_WSDM}
+	& App recommender system that incorporates both apps' functionalities and users' privacy preferences.
+	& User reviews
+	& 6,157
 	\tabularnewline
 	\cline{2-5}
 	\hline
-	
 \end{tabular}
 	\label{tab:table_mobile_mining_studies}
 \end{table*}
