@@ -1,5 +1,5 @@
 \subsection{Mining Mobile Applications}
-Mining mobile apps started to be of interest to researchers (\cite{}, see Table~\ref{tab:table_mobile_mining_studies}).
+Mining mobile apps started to be of interest to researchers (\cite{Enck_2010_OSDI,Enck_2011_USENIX,zhou_2012_SP_dissecting,Yin_2013_WSDM,Minelli_2013_CMSREuro,Pandita_2013_USENIX,gorla_2014_ICSE,chen_2014_ICSE,Liu_2014_ICSE,Lin_2014_SOUPS,rasthofer_2014_NDSS,Liu_2015_MobiSys,seneviratne_2015_SIGMobile,Yang_2015_ICSE,Baeza-Yates_2015_WSDM,Chen_2015_WSDM,Liu_2015_WSDM}, see Table~\ref{tab:table_mobile_mining_studies}).
 The very first work to mine and analyze app store data was introduced by Harman et al. \cite{Harman_2012_MSR}.
 They mined app meta-data (listing details data) of over 32,000 apps in the Blackberry app store to find patterns such as a correlation between app rating and download count.
 Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app. 
@@ -23,106 +23,75 @@ Zhu et al. \cite{zhu_2013_CIKM} proposed a ranking fraud detection system based 
 AppJoy \cite{yan_2011_MobiSys} is a personalized recommender system for Android apps.
 The system computes a ``usage score'' based on the actual user's usage and uses that as an input for a collaborative filtering algorithm to make personalized recommendations.
 
-\begin{longtable}{|>{\bfseries}l|>{\bfseries}l|*{4}{l|}}
+\clearpage
+\begin{longtable}{| c | p{3cm} | p{6cm} | p{2cm} | p{1.5cm} |}
+	\caption{Summary of studies that involve mining of mobile application (continued on next page). \label{tab:table_mobile_mining_studies}} \\
 	\hline
-	\textbf{Domain} & \textbf{Study} & \textbf{Method/Purpose} & \textbf{Depth} & \textbf{Size}  \\
+	\textbf{Domain} & \textbf{Study/System} & \textbf{Method/Purpose} & \textbf{Depth} & \textbf{Size} \\
 	\hline
-	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Privacy}}
-	& Numeric
-	& 7.089
-	& 2.710
-	& 3.116\\
-	\cline{2-5}
-	& Alphanumeric   
-	& 4.269          
-	& 1.850       
-	& 2.355\\
-	\cline{2-5}
-	& Bytes
-	& 2.953          
-	& 1.018       
-	& 1.556\\
-	\hline
-	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Security}}
-	& Great capacity 
-	& Great capacity 
-	& Little size 
-	& High read  \\
-	\cline{2-5}
-	&
-	&
-	&
-	&\\
-	\cline{2-5}
-	&
-	&
-	&
-	&\\
-	\hline
-	
-\end{longtable}
-
-
-\begin{table*}[t]
-	\def\arraystretch{2}
-	\centering
-	\caption{Summary of mining mobile application studies (continued on next page).}
-\begin{tabular}{| c | p{3cm} | p{6cm} | p{2.5cm} | p{1.5cm} |}
-	\hline
-	Domain & Study & Method/Purpose & Depth & Size \tabularnewline
-	\hline
-	\multirow{3}{*}{\rotatebox{90}{\kern-0.3em Privacy}}
-	
-	& 
-	
-	&
-	
-	&
-	
-	&
-	
-	\tabularnewline
-	\cline{2-5}& 
-	Seneviratne et al. \cite{seneviratne_2015_SIGMobile} &
-	Extract listing detail features for a list of user installed apps to predict user's gender.&
-	Listing details&
-	4,167
+	\multirow{5}{*}{\rotatebox{90}{\kern-18em Privacy}}
+	& TaintDroid by Enck et al. \cite{Enck_2010_OSDI}
+	& An information flow tracking system that provides realtime monitoring of privacy sensitive data leaked by applications. 
+	& Code
+	& 30
 	\tabularnewline
 	\cline{2-5}
-	&  & & &\tabularnewline
-	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Security}} & 
-	Pandita et al. \cite{Pandita_2013_USENIX} 
-	& 
-	Use NLP techniques to detect whether the app description indicates the app needs to use a particular permission.
-	&
-	Description, API usage, and Manifest file.
-	&
-	581
+	& PEDAL by Liu et al. \cite{Liu_2015_MobiSys}
+	& A system that enables users to control inherited permission to ad libraries, so they can grant a permission to the app to function but not the ad component within the app itself.
+	& code
+	& 60,000
 	\tabularnewline
 	\cline{2-5}
-	& 
-	Gorla et al \cite{gorla_2014_ICSE}
-	&
-	Analyze and cluster apps by their descriptions and API usages to detect outliers.
-	& 
-	Description and API usage
-	&
-	22,500
+	& Seneviratne et al. \cite{seneviratne_2015_SIGMobile} 
+	& Extract listing detail features for a list of user installed apps to predict user's gender.
+	& Listing details
+	& 4,167
 	\tabularnewline
 	\cline{2-5}
-	& adfgfadgdafg & & &\tabularnewline
+	& Lin et al. \cite{Lin_2014_SOUPS}
+	& A static code analysis approach to analyzing requested permissions and determining which ones are needed for the app's core functionality and the ones needed for sharing sensitive information with ad libraries.
+	They leveraged crowdsourcing to collect privacy preferences and identified four user privacy profiles.
+	& Code and Listing details
+	& 108,246
+	\tabularnewline
 	\cline{2-5}
-	& afgdagdfgdg & & &\tabularnewline
+	& SUSI by Rasthofer et al. \cite{rasthofer_2014_NDSS}
+	& An automated machine learning approach for classifying sources of sensitive data (e.g., location) and sinks of potential channels through which data may leak to an adversary (e.g., a network connection) from Android API methods.
+	& Code
+	& 11,000
+	\tabularnewline
 	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Software Engineering}} & 
-	Chen et al. \cite{chen_2014_ICSE}
-	&
-	Analyze app user reviews to extract valuable information for developers.
-	&
-	User reviews
-	&
-	4
+	\multirow{4}{*}{\rotatebox{90}{\kern-9em Security}} 
+	& Pandita et al. \cite{Pandita_2013_USENIX} 
+	& Use NLP techniques to detect whether the app description indicates the app needs to use a particular permission.
+	& Description, API usage, and Manifest file.
+	& 581
+	\tabularnewline
+	\cline{2-5}
+	& Gorla et al \cite{gorla_2014_ICSE}
+	& Analyze and cluster apps by their descriptions and API usages to detect outliers.
+	& Description and API usage
+	& 22,500
+	\tabularnewline
+	\cline{2-5}
+	& The ded decompiler by Enck, et al. \cite{Enck_2011_USENIX}
+	& A decompiler to recover source code from the binary file.
+	They used it to perform security analysis and discovered suspicious behavior that links to misuse of personal information by the app and ad libraries.
+	& Code
+	& 1,100
+	\tabularnewline
+	\cline{2-5}
+	& Zhou et al.\cite{zhou_2012_SP_dissecting}
+	& A classification of Android malwares into 49 different families.
+	& Code
+	& 1,260
+	\tabularnewline
+	\hline
+	\multirow{4}{*}{\rotatebox{90}{\kern-3em Software Engineering}} 
+	& Chen et al. \cite{chen_2014_ICSE}
+	& Analyze app user reviews to extract valuable information for developers.
+	& User reviews
+	& 4
 	\tabularnewline
 	\cline{2-5}
 	& SAMOA \cite{Minelli_2013_CMSREuro}
@@ -131,39 +100,30 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 20
 	\tabularnewline
 	\cline{2-5}
-	& 
-	& 
-	&
-	&
+	& Yang et al. \cite{Yang_2015_ICSE}
+	& Control-flow analysis system for Android. It generates a callback control-flow graph that can be used for analysis applications such as software and GUI testing.
+	& Code
+	& 20
 	\tabularnewline
 	\cline{2-5}
-	&
-	&
-	&
-	&
+	& PerfChecker by Liu et al. \cite{Liu_2014_ICSE}
+	& A static code analyzer to detect performance bugs
+	& Code
+	& 29
 	\tabularnewline
 	\cline{2-5}
 	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-0.3em Machine Learning}} & 
-	Chen et al \cite{Chen_2015_WSDM} 
-	&
-	A framework for detecting similar apps using an online kernel algorithm.
-	&
-	Listing details
-	&
-	21,624
-	\tabularnewline
-	\cline{2-5}
-	& Yin et al. \cite{Yin_2013_WSDM}
-	& A recommender system for recommending new apps to replace already installed ones.
-	& Description
-	& 5,661
-	\tabularnewline
-	\cline{2-5}
+	\multirow{4}{*}{\rotatebox{90}{\kern-14em Machine Learning}} 
 	& Baeza-Yates et al. \cite{Baeza-Yates_2015_WSDM}
 	& A model for predicting the next installed app the user is going to use. The goal is to improve the usage of home-screen/launcher applications.
 	& Log usage data
-	& 200K users who have 70K unique apps.
+	& 70,000
+	\tabularnewline
+	\cline{2-5}
+	& Chen et al \cite{Chen_2015_WSDM} 
+	& A framework for detecting similar apps using an online kernel algorithm.
+	& Listing details
+	& 21,624
 	\tabularnewline
 	\cline{2-5}
 	& Liu et al.\cite{Liu_2015_WSDM}
@@ -172,7 +132,10 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 6,157
 	\tabularnewline
 	\cline{2-5}
+	& Yin et al. \cite{Yin_2013_WSDM}
+	& A recommender system for recommending new apps to replace already installed ones.
+	& Description
+	& 5,661
+	\\
 	\hline
-\end{tabular}
-	\label{tab:table_mobile_mining_studies}
-\end{table*}
+\end{longtable}
