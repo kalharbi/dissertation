@@ -2,40 +2,39 @@
 
 \section{Introduction}
 \label{ch:propsal}
-This dissertation introduced a deep and longitudinal approach for mining mobile applications.
+This dissertation introduces a deep and longitudinal approach for mining mobile applications.
 I use the term ``deep'' to refer to the deep and structural indexing of apps across multiple levels, and the term ``longitudinal'' to refer to observing them over time.
-The expected main contribution of this dissertation research is the advancement of understanding mobile apps at deep and holistic levels.
-The work proposed here aims at gaining more insights into mobile apps by enabling the analysis at unprecedented depth and over time.
+The expected major contribution of this dissertation research is the advancement of understanding mobile apps at deep and holistic levels.
+The work proposed here aims at gaining more insights into mobile apps by enabling the analysis at unprecedented depth over time.
 Specifically, this dissertation aims to answer the following research questions:
 \begin{enumerate}
-	\item How can we enable deep searching and filtering of mobile apps over time?
-	\item What are the benefits of the deep and longitudinal approach for mining of mobile apps?
+	\item How can we enable deep searching and mining of mobile apps over time?
+	\item What are the benefits of the deep and longitudinal approach for mining mobile apps?
 \end{enumerate}
-% For q2:faster, reliable,effiecnt
+%TODO: Talk about the implications of answering these two research questions on search engines and data mining applications.
 
 In answering the first question, a novel large-scale datasets have been collected and led to the development and deployment of systems (discussed in chapter \ref{ch:mining_design_changes_chapter} and \ref{ch:sieveable_chapter}).
-In this chapter, I expand on answering the second question by discussing my plan for evaluating the deep and longitudinal approach.
-It outlines the path that will be taken for future work, which will further expand our understanding of mobile apps.
-In the next section, I discuss two main phases for evaluating the contribution presented in this thesis.
-
-%TODO: Talk about the implications of answering these two research questions on search engines and data mining applications.
+In this chapter, I expand on answering the second question by discussing my plan for evaluating the effectiveness of the deep and longitudinal approach.
+Finally, I discuss the timeline that will be followed to complete this dissertation.
 
 \section{Evaluation}
 I have empirically demonstrated that Sieveable can enable a deep and holistic search for mobile apps for various applications (see chapter \ref{ch:findings_chapter}).
-To further support the significant of a deep and holistic views of searching mobile apps at large-scale, a comprehensive and careful evaluation is proposed here.
-Specifically, the evaluation should answer the following questions:
+In order to evaluate the effectiveness of Sieveable as a search system, I propose the use of the two standard measures, precision and recall \cite{manning_2008_intro_to_IR}.
+Precision refers to the fraction of retrieved results that are correct, while recall refers to the fraction of correct results that are retrieved.
+The test dataset will be randomly selected and consist of sixty applications with at least two versions.
+Forty search query examples will be extracted from the test dataset.
+The examples will cover the levels indexed by the search engine (listing details, user interface, manifest, and code).
+Correctness will be assessed manually by looking at the apps before executing the queries in the search engine.
+
+In order to verify the significance of the deep and longitudinal approach of mining mobile apps at large-scale, a comprehensive and careful evaluation is proposed.
+Specifically, the evaluation attempts to answer the following questions:
 \begin{enumerate}
-	\item How do we measure the effectiveness of the deep search results?
-	\item What could a deep view of apps search accomplish what is currently not possible in a single-level view?
-	\item What could a longitudinal view of apps search accomplish what is currently not possible in a single snapshot view?
+	\item What could a deep view of apps mining accomplish what is currently not possible in a single-level view?
+	\item What could a longitudinal view of apps mining accomplish what is currently not possible in a single-snapshot view?
 \end{enumerate}
 
-\paragraph{Evaluating the Effectiveness of Search Results}
-To answer the first question, I plan to use standard basic measures for information retrieval effectiveness: precision and recall \cite{manning_2008_intro_to_IR}.
-Precision refers to the fraction of retrieved results that are relevant, while recall refers to the fraction of relevant results that are retrieved.
-
-To answer the second question, I propose conducting a comparison between the proposed approach with the following previously applied single-view approaches:
-
+\noindent \paragraph{Evaluating the Deep Approach}
+In order to evaluate the deep search approach, I propose conducting a comparison with the following previously applied single-view approaches:
 \begin{itemize}
 	\item Listing Details Analysis:
 	\item User Interface Analysis:
