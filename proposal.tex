@@ -1,4 +1,4 @@
-\chapter{Proposed Work}
+\chapter{Evaluation}
 
 \section{Introduction}
 \label{ch:propsal}
@@ -22,9 +22,9 @@ I have empirically demonstrated that Sieveable can enable a deep and holistic se
 In order to evaluate the effectiveness of Sieveable as a search system, I propose the use of the two standard measures, precision and recall \cite{manning_2008_intro_to_IR}.
 Precision refers to the fraction of retrieved results that are correct, while recall refers to the fraction of correct results that are retrieved.
 The test dataset will be randomly selected and consist of sixty applications with at least two versions.
-Forty search query examples will be extracted from the test dataset.
+Forty search query examples will be extracted from the test dataset to act as our ground truth.
 The examples will cover the levels indexed by the search engine (listing details, user interface, manifest, and code).
-Correctness will be assessed manually by looking at the apps before executing the queries in the search engine.
+Correctness will be assessed manually by looking at the apps before submitting the queries into the search engine.
 
 In order to verify the significance of the deep and longitudinal approach of mining mobile apps at large-scale, a comprehensive and careful evaluation is proposed.
 Specifically, the evaluation attempts to answer the following questions:
@@ -33,22 +33,23 @@ Specifically, the evaluation attempts to answer the following questions:
 	\item What could a longitudinal view of apps mining accomplish what is currently not possible in a single-snapshot view?
 \end{enumerate}
 
-\noindent \paragraph{Evaluating the Deep Approach}
-In order to evaluate the deep search approach, I propose conducting a comparison with the following previously applied single-view approaches:
-\begin{itemize}
-	\item Listing Details Analysis:
-	\item User Interface Analysis:
-	\item Code Analysis:
-\end{itemize}
-The comparison will show that current single-view analysis methods are shallow and narrow, which result in missing several important observations.
+First, in order to evaluate the deep search approach, I propose to conduct a comparison with the previously applied single-view approaches (listing details view, user interface view, code view).
+The comparison will walk through a scenario of applying each approach individually to perform a task and discuss how accuracy increases as we go deeper in the analysis to answer a specific information need.
+Let us assume that we need to find examples of apps that use the platform-specific visual design language called material design.
+Suppose that we are interested in finding apps that use lists and cards with material deign style.
+I will select a time window of a month and randomly select \textit{N} apps for manual inspection.
+By looking at their marketplace listing details page, we can identify a number, \textit{L}, of examples that have screenshots of the desired material design cards.
+By inspecting their UI layout files, we can find a number, \textit{U}, of examples that have implemented the design.
+By inspecting their byte code, we can find a number, \textit{C}, of examples that have created the design.
+As we go deeper in the analysis, both precision and recall increase significantly.
 
-\paragraph{The Longitudinal View:}
-The second phase proposes a systematic study on incorporating the deep and holistic view to perform app search ranking.
+Second, I propose to provide experimental evidence that shows the advantage of applying the longitudinal view to app mining against the single-snapshot view.
+Let us assume that we need to find the peak period of apps adopting the material design language.
+I will use web search engines to collect N number of apps that have switched to material design and use that as the ground truth for my experiment.
+The experiment will use Sieveable to find the release date of the first adopted version and compare the results with the ground truth I collected manually.
 
-\section{The Significance of the Proposed Work}
-
-\section{Future Work}
 \section{Timeline}
+
 The time
 
 
