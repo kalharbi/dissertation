@@ -10,15 +10,14 @@ Applications in the marketplace are uniquely identified using a package name fie
 Android uses the Java package naming conventions to uniquely identify applications by their package names.
 In general, developers use a package name that begins with their reversed Internet domain name (e.g., com.airbnb.android).
 Developers can update the APK file with a newer version and change the store listing details page at any time.
-The Google Play store only offers the most recent version and does not keep previously submitted versions.
+The Google Play store only offers the most recent version of the app and does not keep previously submitted versions.
 However, some unofficial or third-party marketplaces maintain an archive for all versions of particular apps.
-Android requires applications to define version information, so it can be used when releasing or upgrading the APK file.
-In addition to package names, Android uses two version values. 
+In addition to package names, Android requires applications to define version information, so it can be used when releasing or upgrading the APK file. Android uses two version values. 
 a) version name, which is a string value that represents the application release version and is visible to users (e.g., 1.2.0), and b) version code, which is an integer value that is not visible to the users but used by marketplaces including the Google Play store to check for version updates.
 
 \subsection{User Interface Layout}
 The user interface (UI) of Android applications is built using two basic UI elements, View and ViewGroup elements.
-Views represent a single UI component (e.g., input elements such as text box, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, RelativeLayout, etc.).
+Views represent a single UI component (e.g., input elements such as text view, button, etc.), while ViewGroups are the invisible containers that group View elements (e.g., LinearLayout, RelativeLayout, etc.).
 UI elements are usually defined in static XML layout files. The app content (e.g., text, images, animations, etc.) is usually stored in XML files within special directories and embedded using special XML tags and attributes.
 The Android framework parses the layout XML files into a Document Object Model (DOM) tree, performs pre-processing on the tree at build time, and inflates the screen with the visual rendering of the layout.
 The XML layout files provide a complete specification for the Android framework engine to render the user interface.
