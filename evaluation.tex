@@ -18,7 +18,7 @@ In answering the first question, a novel large-scale datasets have been collecte
 In this chapter, I expand on answering the second question by discussing my plan for evaluating the effectiveness of the deep and longitudinal approach.
 Finally, I discuss the timeline that will be followed to complete this dissertation.
 
-\section{Evaluation}
+\section{Evaluation Metrics}
 I have empirically demonstrated that Sieveable can enable a deep and holistic search for mobile apps for various applications (see chapter \ref{ch:findings_chapter}).
 To evaluate the effectiveness of Sieveable as a search system, I propose the use of the standardly used measures for information retrieval effectiveness, precision and recall \cite{manning_2008_intro_to_IR}.
 Precision refers to the fraction of retrieved results that are correct, while recall refers to the fraction of correct results that are retrieved.
@@ -26,8 +26,16 @@ The test dataset will be randomly selected and consist of sixty applications wit
 Forty search query examples will be extracted from the test dataset to act as our ground truth.
 The examples will cover the levels indexed by the search engine (listing details, user interface, manifest, and code).
 Correctness will be assessed manually by looking at the apps before submitting the queries into the search engine.
+In addition, I plan to use practical benchmarks to evaluate the performance of Sieveable beyond its retrieval quality. In particular, the following quantitative measures will be used:
+\begin{enumerate}
+	\item How many apps does it index per hour?
+	\item How fast is it on a single-level query?
+	\item How fast is it on complex search queries?
+\end{enumerate}
+The results will be reported on the larger dataset (over 300,000) apps and will be used to tune the overall system performance and report on performance enhancement.
 
-Furthermore, I propose applying a comprehensive and careful evaluation to verify the significance of the deep and longitudinal approach of mining mobile apps at large-scale.
+\section{Evaluation of the Approach}
+I propose to apply a comprehensive and careful evaluation to verify the significance of the deep and longitudinal approach of mining mobile apps at large-scale.
 Specifically, the evaluation attempts to answer the following questions:
 \begin{enumerate}
 	\item What could a deep view of apps mining accomplish what is currently not possible in a single-level view?
@@ -48,14 +56,6 @@ Second, I propose to provide experimental evidence that shows the advantage of a
 Let us assume that we need to find the peak period of apps adopting the material design language.
 I will use web search engines to collect N number of apps that have switched to material design and use that as the ground truth for my experiment.
 The experiment will use Sieveable to find the release date of the first adopted version and compare the results with the ground truth I collected manually.
-
-Finally, I plan to use practical benchmarks to evaluate the performance of Sieveable beyond its retrieval quality. In particular, the following quantitative measures will be used:
-\begin{enumerate}
-	\item How many apps does it index per hour?
-	\item How fast is it on a single-level query?
-	\item How fast is it on complex search queries?
-\end{enumerate}
-The results will be reported on the larger dataset (over 300,000) apps and will be used to tune the overall system performance and report on performance enhancement.
 
 \section{Timeline}
 
