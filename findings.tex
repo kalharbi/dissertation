@@ -13,7 +13,7 @@ e) Data mining researchers can mine applications efficiently and build machine-l
 In previous works \cite{Alharbi_2015_MobileHCI}, these types of analyses would require custom scripts to be written and executed on a cluster, which would require several days of work.
 In contrast, Sieveable is able to reduce the problem to a simple search query, which takes an analyst only seconds to specify and minutes to run.
 
-In this section, we present several illustrative search queries to show that Sievable enables users to conduct many types of analyses.
+In this chapter, I present several illustrative search queries to show that Sievable enables users to conduct many types of analyses.
 
 \section{Design Queries}
 % we have lots of those
@@ -49,7 +49,7 @@ For example, we can also search for apps that use a TextView as a sign in button
 This query returned 577 apps.
 We received the first response that contains 10 results in 1.2 seconds while the request to return all the results completed in 1.8 minutes. Figure~\ref{fig:fig_signInDownloadDist}b shows the apps by their downloads amount.
 
-\begin{figure}[ht]
+\begin{figure}[H]
 \centering
 \subfloat[Sign in Button]{{\includegraphics[scale=0.3]{figures/sieveable-deep-search/signInBtnDownloadDist} }}%
 \qquad
@@ -194,3 +194,8 @@ We can use Sieveable to get a set of apps that might be candidates for bug fixes
 
 This query returned 2,119 apps in 16 seconds. The first 10 results were received in 70 milliseconds.
 
+\section{Summary}
+This chapter presented a set of illustrative query examples that spanned across multiple levels and met diverse search goals.
+Sieveable opens up a wide opportunity to apply an in-depth analysis of mobile apps across multiple levels to investigate emergent trends in mobile apps development.
+For more information about Sieveable deep queries including over 100 query examples -- please visit:
+\url{http://sieveable.io}
