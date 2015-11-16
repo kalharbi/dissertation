@@ -472,8 +472,13 @@ We speculate the reason is two-folds.
 First, implementing this pattern requires a high degree of customization by developers to fit their needs. Second, an app may not have a deep hierarchical navigation structure to make use of this pattern. 
 We also found that the majority of the apps using the Navigation Drawer were recent adopters (771 out of 1183), which suggests Navigation Drawer a relatively new design pattern.
 
-\section{Discussion and Future Work}
+\section{Summary}
+This chapter presented a large-scale data-mining approach to analyzing design pattern changes.
+I discussed its implementation and illustrated a subset of analyses regarding the changes in the use of design patterns (see table~\ref{tab:table_summary}).
+This work demonstrated the value of using data-driven approaches to discovering design pattern changes on a large-scale.
+
 \begin{table}[!htbp]
+	\def\arraystretch{2}
 	\begin{tabular}{| >{\centering\arraybackslash}m{6cm} | m{2cm} | m{2cm} | m{2cm} | m{2cm} |}
 		\hline
 		\centering Design Pattern & Usage & First \ Time & Changes & No Changes \\
@@ -500,31 +505,3 @@ We also found that the majority of the apps using the Navigation Drawer were rec
 	\caption{The changes to the presented design patterns. The columns show the name of the design pattern, the number of apps that used this pattern in the dataset, the number of apps that used it for the first time in a recent release, the number of apps that used it but later switched to a different design pattern, and the number of apps that maintained using it in future releases.}
 	\label{tab:table_summary}
 \end{table}
-
-This chapter presented a large-scale data-mining approach to analyzing design pattern changes.
-We discussed its implementation and illustrated a subset of analyses regarding the changes in the use of design patterns (see table~\ref{tab:table_summary}).
-While our analysis has led to interesting results, it has limitations that require future work:
-
-\par 
-
-\underline{\textit{Design Questions:}} This work demonstrates the value of using data-driven approaches to discovering design pattern changes on a large-scale, which raises a number of questions regarding design changes. 
-What are the underlying causes of the discovered design changes? 
-Do different apps benefit from some changes? Do users like the new changes? 
-What are the reasons behind the low adoption of some design patterns?
-These questions have not been raised before this work. 
-This work opens new avenues for future work that could have impact on mobile interaction design.
-
-\underline{\textit{Sampling bias:}} We started this study 18 months ago. 
-Thus, our analyses only included updates we observed over this period. 
-Also, sometimes our crawlers were down and may have missed a number of updates. 
-We tracked a sample of over 24K apps over multiple versions during this period. 
-This sample, while sizable, represents only a small percentage of all the Android apps. 
-A large number of apps without any update during this period were excluded from our analysis. 
-Crawling more versions and scaling the dataset to include a large number of apps would increase the accuracy of understanding design pattern changes.
-
-\underline{\textit{Features:}} Not all features defined by an app are actually used in the app. 
-Our method extracts as much information as possible, including, API method names, layouts, and UI elements defined by an app. 
-But we cannot guarantee these are all actually used by the app. 
-For instance, an app may define a Navigation Drawer in a layout file but never get used by any screen. 
-A possible solution is to employ more sophisticated program analysis techniques such as control flow analysis and dynamic analysis.
-
