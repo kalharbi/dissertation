@@ -1,7 +1,10 @@
 \subsection{Mining Mobile Applications}
-Mining mobile apps started to be of interest to researchers (\cite{Enck_2010_OSDI,Enck_2011_USENIX,zhou_2012_SP_dissecting,Yin_2013_WSDM,Minelli_2013_CMSREuro,Pandita_2013_USENIX,gorla_2014_ICSE,chen_2014_ICSE,Liu_2014_ICSE,Lin_2014_SOUPS,rasthofer_2014_NDSS,Liu_2015_MobiSys,seneviratne_2015_SIGMobile,Yang_2015_ICSE,Baeza-Yates_2015_WSDM,Chen_2015_WSDM,Liu_2015_WSDM}, see Table~\ref{tab:table_mobile_mining_studies}).
+Mining mobile apps started to be of interest to researchers (\cite{Enck_2010_OSDI,Enck_2011_USENIX,Ma_WWW_2012,crussell_2012_ESORICS,Frank_2012_ICDM,zhou_2012_SP_dissecting,Yin_2013_WSDM,Minelli_2013_CMSREuro,Pandita_2013_USENIX,gorla_2014_ICSE,chen_2014_ICSE,Liu_2014_ICSE,Lin_2014_SOUPS,rasthofer_2014_NDSS,Liu_2015_MobiSys,seneviratne_2015_SIGMobile,Yang_2015_ICSE,Baeza-Yates_2015_WSDM,Chen_2015_WSDM,Liu_2015_WSDM,Tufano_ICSE_2015,Park_SIGIR_2015}, see Table~\ref{tab:table_mobile_mining_studies}).
 The very first work to mine and analyze app store data was introduced by Harman et al. \cite{Harman_2012_MSR}.
 They mined app meta-data (listing details data) of over 32,000 apps in the Blackberry app store to find patterns such as a correlation between app rating and download count.
+ProfileDroid \cite{Wei_2012_MobiCom} is a monitoring and profiling system for analyzing the behavior of Android apps.
+The system both statically analyzes APK files (bytecode only) and dynamically collects log data for system events and network traffic.
+They uncovered behavioral characteristics among apps such as most of network traffic is not encrypted and travel to third-party servers.
 Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app. 
 They collected listing details data and analyzed the reviews at multiple granularities.
 They found that the lack of attractive design was the largest cause of negative reviews. 
@@ -61,7 +64,13 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 11,000
 	\tabularnewline
 	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-9em Security}} 
+	\multirow{5}{*}{\rotatebox{90}{\kern-14em Security}}
+	& DNADroid \cite{crussell_2012_ESORICS}
+	& A tool for computing similarities between apps to detect illegitimate app clones in multiple marketplaces.
+	& Listing details and code
+	& 75,000
+	\tabularnewline
+	\cline{2-5}
 	& Pandita et al. \cite{Pandita_2013_USENIX} 
 	& Use NLP techniques to detect whether the app description indicates the app needs to use a particular permission.
 	& Description, API usage, and Manifest file.
@@ -87,7 +96,7 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 1,260
 	\tabularnewline
 	\hline
-	\multirow{4}{*}{\rotatebox{90}{\kern-3em Software Engineering}} 
+	\multirow{5}{*}{\rotatebox{90}{\kern-16em Software Engineering}} 
 	& Chen et al. \cite{chen_2014_ICSE}
 	& Analyze app user reviews to extract valuable information for developers.
 	& User reviews
@@ -96,7 +105,7 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	\cline{2-5}
 	& SAMOA \cite{Minelli_2013_CMSREuro}
 	& An analytic Platform for mobile apps to analyze the structure of source code over time.
-	& Listing details and source code.
+	& Listing details and code.
 	& 20
 	\tabularnewline
 	\cline{2-5}
@@ -112,6 +121,11 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& 29
 	\tabularnewline
 	\cline{2-5}
+	& Tufano et al. \cite{Tufano_ICSE_2015}
+	& Analyze the change history of open source Android projects to detect signs of bad code smells (poor design and implementation choices).
+	& Code and Git commits
+	& 100
+	\tabularnewline
 	\hline
 	\multirow{4}{*}{\rotatebox{90}{\kern-14em Machine Learning}} 
 	& Baeza-Yates et al. \cite{Baeza-Yates_2015_WSDM}
@@ -136,6 +150,32 @@ The system computes a ``usage score'' based on the actual user's usage and uses 
 	& A recommender system for recommending new apps to replace already installed ones.
 	& Description
 	& 5,661
+	\tabularnewline
+	\cline{2-5}
+	\hline
+	\multirow{4}{*}{\rotatebox{90}{\kern-10em Data Mining}}
+	& Park et al. \cite{Park_SIGIR_2015} 
+	& An information retrieval approach that leverages user reviews with app description for mobile app retrieval.
+	& Listing Details
+	& 43,041
+	\tabularnewline
+	\cline{2-5}
+	& Frank et al.\cite{Frank_2012_ICDM}.
+	& Cluster apps by permissions to find patterns in high-reputation and low-reputation apps.
+	& Listing Details
+	& 188,389
+	\tabularnewline
+	\cline{2-5}
+	& Ma et al.\cite{Ma_WWW_2012}
+	& Mining context logs of mobile app users to identify similar patterns.
+	& context logs
+	& logs from 443 users
+	\tabularnewline
+	\cline{2-5}
+	& Petsas et al. \cite{Petsas_2013_IMC}.
+	&  A study in apps' popularity trends and revenue strategies across four third-party Android marketplaces.
+	& Listing and code.
+	& 300,000+
 	\\
 	\hline
 \end{longtable}
