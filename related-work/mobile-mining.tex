@@ -1,13 +1,13 @@
 \subsection{Mining Mobile Applications}
-Mining mobile apps started to be of interest to researchers (\cite{Enck_2010_OSDI,Enck_2011_USENIX,Ma_WWW_2012,crussell_2012_ESORICS,Frank_2012_ICDM,zhou_2012_SP_dissecting,Yin_2013_WSDM,Minelli_2013_CMSREuro,Pandita_2013_USENIX,gorla_2014_ICSE,chen_2014_ICSE,Liu_2014_ICSE,Lin_2014_SOUPS,rasthofer_2014_NDSS,Liu_2015_MobiSys,seneviratne_2015_SIGMobile,Yang_2015_ICSE,Baeza-Yates_2015_WSDM,Chen_2015_WSDM,Liu_2015_WSDM,Tufano_ICSE_2015,Park_SIGIR_2015}, see Table~\ref{tab:table_mobile_mining_studies}).
+Mining mobile apps started to be of interest to researchers (\cite{Enck_2010_OSDI,Enck_2011_USENIX,Ma_WWW_2012,crussell_2012_ESORICS,Frank_2012_ICDM,zhou_2012_SP_dissecting,Yin_2013_WSDM,Petsas_2013_IMC,Minelli_2013_CMSREuro,Pandita_2013_USENIX,gorla_2014_ICSE,chen_2014_ICSE,Liu_2014_ICSE,Lin_2014_SOUPS,rasthofer_2014_NDSS,Liu_2015_MobiSys,seneviratne_2015_SIGMobile,Yang_2015_ICSE,Baeza-Yates_2015_WSDM,Chen_2015_WSDM,Liu_2015_WSDM,Tufano_ICSE_2015,Park_SIGIR_2015}, see Table~\ref{tab:table_mobile_mining_studies}).
 The very first work to mine and analyze app store data was introduced by Harman et al. \cite{Harman_2012_MSR}.
 They mined app meta-data (listing details data) of over 32,000 apps in the Blackberry app store to find patterns such as a correlation between app rating and download count.
-ProfileDroid \cite{Wei_2012_MobiCom} is a monitoring and profiling system for analyzing the behavior of Android apps.
-The system both statically analyzes APK files (bytecode only) and dynamically collects log data for system events and network traffic.
+Wei et al. \cite{Wei_2012_MobiCom} developed ProfileDroid, a monitoring and profiling system for analyzing the behavior of Android apps.
+The system statically analyzes APK files (bytecode only) and dynamically collects log data for system events and network traffic.
 They uncovered behavioral characteristics among apps such as most of network traffic is not encrypted and travel to third-party servers.
-Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app. 
+Fu et al. \cite{fu_2013_KDD} conducted a sentiment analysis on the reviews of over 170,000 mobile apps to identify the common reasons why users like or hate an app.
 They collected listing details data and analyzed the reviews at multiple granularities.
-They found that the lack of attractive design was the largest cause of negative reviews. 
+They found that the lack of attractive design was the largest cause of negative reviews.
 However, only listing details data were considered and no design and code data were analyzed.
 Viennot et al. \cite{viennot_2014_metrics} developed the largest scale crawler for Android apps, crawling over 1,000,000 apps and analyzing a subset of their listing details and source code to identify library usages and detect dangerous security practices.
 Despite the immense scale, they stored the listing details and source code files as plain-text data and used a full-text search engine to query them.
