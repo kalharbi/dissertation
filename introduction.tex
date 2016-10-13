@@ -8,7 +8,7 @@ These apps have become a valuable data source to mine and extract insight from i
 
 In the recent years, there has been a noticeable amount of research activities on how to extract meaningful insights from apps data. 
 The research in mining mobile apps has been dominated by three single views.
-First, researchers have mined the listing details data of apps such as ratings and user reviews to perform sentiment analysis and help developers make informed decisions supported by data \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
+First, researchers have mined the meta-data or listing details data of apps such as ratings and user reviews to perform sentiment analysis and help developers make informed decisions supported by data \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
 Others have created tools and commercial services to assist app developers and publishers in better understanding of listing details data \cite{appfigures,applause,appannie}.
 Second, researchers have mined user interface data such as styles and layouts of thousands of apps to gain insights into their design patterns \cite{shirazi_EICS_2013,Alharbi_2015_MobileHCI}.
 Third, researchers have also mined the source code of apps to learn about malicious behavior and protect users' privacy-sensitive data \cite{zhou_2012_SP_dissecting,lu_2012_CCS,Arzt_2014_PLDI}.
@@ -18,7 +18,7 @@ This dissertation pursues a more deep search approach that takes a holistic view
 In user interface (UI) design analysis, UI components are often created or modified at runtime.
 When only analyzing the static layout files, this observation is missed because that behavior is defined in the app source code.
 This shortcoming can be solved by combining both the design and code views.
-In sentiment analysis of user reviews, it is often difficult to link opinions to specific features.
+In sentiment analysis of user reviews, it is often difficult to link opinions to specific app features.
 By incorporating the visual view and code view, one can potentially establish a causal relationship between a new feature (or a bug) and the onset of certain opinions.
 In security analysis, a function could be determined, through program analysis, to be triggering a sensitive operation, such as sending an SMS message or taking a photo.
 But it is often hard to judge if the sensitive operation is warranted from the program view alone.
@@ -26,8 +26,8 @@ By also taking a view of the design, one may examine which button may be linked 
 Indexing apps to support multi-view data mining of apps is always challenging because it requires an infrastructure for integrating multiple heterogeneous data sources.
 
 To this end, this dissertation makes two major contributions.
-First, it presents a holistic approach for mining apps encompassing multiple views of the apps, manifested in a multi-view search engine called \textit{Sieveable}.
-Sieveable indexed more than three hundred thousand apps (including historical versions) at an unprecedented level of depth (listing details, user interface, and code).
+First, it presents a holistic approach for mining apps encompassing multiple views of the apps, manifested in a scalable retrieval platform called \textit{Sieveable}.
+Sieveable indexed more than four hundred thousand apps (including historical versions) at an unprecedented level of depth (listing details, user interface, and code).
 Second, it demonstrates the utility of the approach taken by conducting diverse types of analyses that illustrate the benefits of the deep and longitudinal approach for mining mobile apps.
 
 \section{State of the Art}
@@ -50,7 +50,7 @@ Second, it demonstrates the utility of the approach taken by conducting diverse 
 
 \section{Combing the Approaches Together}
 %TODO
-1)Why would combine the approaches together produce more useful results?
+1)Why would combining the two approaches together produce more useful results?
 \pagebreak
 
 \section{Summary of Contributions}
@@ -59,10 +59,11 @@ Second, it demonstrates the utility of the approach taken by conducting diverse 
 \pagebreak
 
 \section{Overview}
-This thesis proposal is divided into 6 chapters.
+This thesis is divided into 7 chapters.
 Chapter \ref{ch:related_work_chapter} reviews prior related work in the area of mining the web, mobile applications, and software repositories.
-Chapter \ref{ch:mining_design_changes_chapter} introduces a data-mining approach for mining user interface design pattern changes and shows its utility by applying it to thousands of Android apps.
-Chapter \ref{ch:sieveable_chapter} introduces Sieveable, a deep search engine for Android apps. 
-This chapter discusses the technical requirements of designing the search engine and the process of indexing apps at multiple levels.
-Chapter \ref{ch:findings_chapter} presents several illustrative search queries across multiple levels that demonstrate Sieveable's capabilities, and how it enables different types of deep analyses of mobile apps.
-Finally, chapter \ref{ch:evaluation} concludes with a discussion on the main contributions of this thesis, presents a plan for evaluating them, and the timeline for completion of the thesis.
+Chapter \ref{ch:mining_design_changes_chapter} presents a pilot experiment for mining user interface design pattern changes of a small-scale dataset of Android apps.
+The challenges faced during this pilot experiment led to the design of a scalable platform for mining mobile applications over time called Sieveable.
+Chapter \ref{ch:sieveable_chapter} introduces Sieveable, discusses the technical requirements of designing the retrieval platform, and presents the process of indexing apps at multiple levels.
+Chapter \ref{ch:queries_chapter} presents several illustrative search queries across multiple levels that demonstrate Sieveable's capabilities, and how it enables different types of deep analyses of mobile apps.
+Chapter \ref{ch:findings_chapter} applies the presented approach to problems in mobile app design, accessibility, and security.
+Finally, chapter \ref{ch:conclusion} concludes with a discussion on the main contributions of this thesis and discuses the future directions this work may take.
