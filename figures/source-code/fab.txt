@@ -1,0 +1,31 @@
+MATCH app
+WHERE
+   <android.support.design.widget.FloatingActionButton />
+   <date-published>(*)</date-published>
+   <rating>(*)</rating>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
+
+MATCH app
+WHERE
+   <com.getbase.floatingactionbutton.FloatingActionButton />
+   <date-published>(*)</date-published>
+   <rating>(*)</rating>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
+
+MATCH app
+WHERE
+   <com.melnykov.fab.FloatingActionButton />
+   <date-published>(*)</date-published>
+   <rating>(*)</rating>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
+
+MATCH app
+WHERE
+   <com.software.shell.fab.ActionButton />
+   <date-published>(*)</date-published>
+   <rating>(*)</rating>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads

@@ -32,51 +32,70 @@ With Sieveable, one can examine the popularity of a specific UI library within a
 This can provide insightful feedback to UI framework engineers or developers on how well the components they developed are received by third-party developers.
 We can find the trends of adopting the FAB as a design pattern over time using different alternatives.
 At the time of writing, there are four alternative ways to implement the FAB in Android: the official design support library \cite{Android_Design_Support_Lib}, and three other additional third-party libraries \cite{android-floating-action-button, FloatingActionButton, fab}.
-I use the following sieveable queries to retrieve the set of apps that implement the FAB using the previously mentioned libraries: 
+I use the following Sieveable search queries to retrieve a set of apps that implement the FAB using the previously mentioned libraries: 
 
-\begin{minted}[fontsize=\small]{xml}
-MATCH app
-WHERE
-<android.support.design.widget.FloatingActionButton />
-<date-published>(*)</date-published>
-<rating>(*)</rating>
-<downloads>(*)</downloads>
-RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
+\inputminted
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=MyLightGrayColor,
+fontsize=\footnotesize
+]
+{xml}{figures/source-code/fab.txt}
 
-MATCH app
-WHERE
-<com.getbase.floatingactionbutton.FloatingActionButton />
-<date-published>(*)</date-published>
-<rating>(*)</rating>
-<downloads>(*)</downloads>
-RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
-
-MATCH app
-WHERE
-<com.melnykov.fab.FloatingActionButton />
-<date-published>(*)</date-published>
-<rating>(*)</rating>
-<downloads>(*)</downloads>
-RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
-
-MATCH app
-WHERE
-<com.software.shell.fab.ActionButton />
-<date-published>(*)</date-published>
-<rating>(*)</rating>
-<downloads>(*)</downloads>
-RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
-\end{minted}
-
-
-When we combine all the results together and aggregate by the release year in which the first adoption is observed, we can get a sense of the adoption rate of the FAB over the last years Figure~\ref{fig:figure}.
-
+\noindent When we combine all the results together and aggregate by the release year in which the first adoption is observed, we can get a sense of the adoption rate of the FAB over the last years Figure~\ref{fig:fab_years}.
+\begin{figure}[h]
+	\includegraphics[scale=0.6]{figures/findings/fab_over_years.png}
+	\caption{The adoption rate of the Floating Action Button (FAB) over the years.}
+	\label{fig:fab_years}
+\end{figure}
 This shows that the adoption rate of this design pattern is growing slowly since it was first introduced in June 2014.
 We can also analyze the adoption rate of the different implementation or libraries options over time.
-In Figure~\ref{fig:figure}, we can see that apps started adopted this pattern before the official release.
-Once an official library was introduced by Google in May 2015 \cite{}, the adoption rate started to increase noticeably.
+\begin{figure}[h]
+	\includegraphics[scale=0.5]{figures/findings/fab_by_quarter.png}
+		\caption{The percentage of apps that started adopting the Floating Action Button (FAB) using four popular libraries by calendar quarter.}
+	\label{fig:fab_by_quartert}
+\end{figure}
+In Figure~\ref{fig:fab_by_quartert}, we can see that apps started adopted this pattern before the official release.
+Once the official library was introduced by Google in May 2015 \cite{android_design_support_lib_blog_post}, the adoption rate started to increase noticeably.
 This suggests that a small number developers tend to use third-party libraries to implement a new design that is not yet officially supported.
 The larger number of developers, however, are much quicker to use a consistent implementation by an official library.
+
+\subsubsection{Navigation Drawer}
+\begin{figure}[H]
+	\centering
+	{{\includegraphics[scale=0.1]{figures/findings/closed-nav-drawer-kitchenstories.png} }}%
+	\qquad
+	{{\includegraphics[scale=0.1]{figures/findings/open-nav-drawer-kitchenstories.png} }}%
+	\caption{Example of an app with a closed navigation drawer (left) and an open navigation drawer (right).}
+	\label{fig:nav_drawer}
+\end{figure}
+The navigation drawer is a hidden menu panel that can be revealed by tapping on the app icon menu (also known as the hamburger icon), which causes the panel to slide from left to right (figure~\ref{fig:nav_drawer}).
+The navigation drawer has existed before the concepts of Material Design were introduced and was later added to the list of material design patterns with minor styling recommendation.
+In order to create a navigation drawer, a developer needs to add a root element to the layout file with two children.
+The root element must be a specific view called \textit{android.support.v4.widget.DrawerLayout}, which holds two children.
+The first child can be any view group element to hold the content of the app.
+The second child is a view that contains the content of the navigation drawer, which can be populated statically or dynamically with the drawer's list of items (e.g., \textit{ ListView} or \textit{android.support.design.widget.NavigationView}).
+To find apps with a navigation drawer, I use the following Sieveable search query:
+
+\inputminted
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=MyLightGrayColor,
+fontsize=\footnotesize
+]
+{xml}{figures/source-code/navdrawer.txt}
+
+\noindent These two search queries returned 20,165 unique apps in total.
+To find the adoption rate of this design pattern over the years, I remove duplicate apps from the results, keep the first version in which the adoption is observed, and group the remaining results by year.
+Below, figure~\ref{fig:fab_years} shows the adoption rate of the navigation drawer over the years from 2013 to 2016.
+We can see an increase over the years but at a relatively slow rate (6.95\% is the average annual adoption increase).
+\begin{figure}[h]
+	\includegraphics[scale=0.55]{figures/findings/navdrawer_over_years.png}
+	\caption{The adoption rate of the Navigation Drawer over the years.}
+	\label{fig:fab_years}
+\end{figure}
 
 \section{Accessibility Mining Analysis}
 

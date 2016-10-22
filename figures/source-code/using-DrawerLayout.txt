@@ -1,0 +1,10 @@
+MATCH app
+WHERE
+  <android.support.v4.widget.DrawerLayout>
+    <_/>
+    <_/>
+  </android.support.v4.widget.DrawerLayout>
+  <date-published>(*)</date-published>
+  <rating>(*)</rating>
+  <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as rating, l$3 as downloads
