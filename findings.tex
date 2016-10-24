@@ -6,7 +6,7 @@ In this chapter, I present illustrative temporal analysis examples to understand
 \section{Visual Design Mining}
 
 Mobile UI design is always evolving and new guidelines are put into place to create a consistent experience across the platform.
-For instance, Google introduced Material Design, a design language that makes use of elements from print design, responsive transitions, and depth effects \cite{Google_Material_Design}.
+For instance, Google introduced material design, a design language that makes use of elements from print design, responsive transitions, and depth effects \cite{Google_Material_Design}.
 Google announced the main concepts of the design language on June 25, 2014.
 Since then several third-party implementations have been introduced and used by developers.
 A year later, Google introduced an official library called the Android Design Support Library, which allows developers to implement a number of material design components that are backward compatible with old devices.
@@ -43,14 +43,14 @@ fontsize=\footnotesize
 ]
 {xml}{figures/source-code/fab.txt}
 
-\noindent When we combine all the results together and aggregate by the release year in which the first adoption is observed, we can get a sense of the adoption rate of the FAB over the last years Figure~\ref{fig:fab_years}.
+\noindent When we combine all the results together and aggregate by the release year in which the first adoption is observed, we can get a sense of the adoption rate of the FAB over the last years as shown in figure~\ref{fig:fab_years}.
 \begin{figure}[h]
 	\includegraphics[scale=0.6]{figures/findings/fab_over_years.png}
 	\caption{The adoption rate of the Floating Action Button (FAB) over the years.}
 	\label{fig:fab_years}
 \end{figure}
 This shows that the adoption rate of this design pattern is growing slowly since it was first introduced in June 2014.
-We can also analyze the adoption rate of the different implementation or libraries options over time.
+We can also analyze the adoption rate of the different implementation or library options over time.
 \begin{figure}[h]
 	\includegraphics[scale=0.5]{figures/findings/fab_by_quarter.png}
 		\caption{The percentage of apps that started adopting the Floating Action Button (FAB) using four popular libraries by calendar quarter.}
@@ -58,8 +58,10 @@ We can also analyze the adoption rate of the different implementation or librari
 \end{figure}
 In Figure~\ref{fig:fab_by_quartert}, we can see that apps started adopted this pattern before the official release.
 Once the official library was introduced by Google in May 2015 \cite{android_design_support_lib_blog_post}, the adoption rate started to increase noticeably.
-This suggests that a small number developers tend to use third-party libraries to implement a new design that is not yet officially supported.
+This shows that a small number developers tend to use third-party libraries to implement a new design that is not yet officially supported.
 The larger number of developers, however, are much quicker to use a consistent implementation by an official library.
+Finally, I analyzed the group of apps that started adding FAB earlier using a third-party library before the existence of the official library.
+I found that the majority of these apps have a low number of downloads (89.81\% with 100,000 download times or less compared to 10.19\% with more than 100,000 download times).
 
 \subsubsection{Navigation Drawer}
 \begin{figure}[H]
@@ -71,12 +73,12 @@ The larger number of developers, however, are much quicker to use a consistent i
 	\label{fig:nav_drawer}
 \end{figure}
 The navigation drawer is a hidden menu panel that can be revealed by tapping on the app icon menu (also known as the hamburger icon), which causes the panel to slide from left to right (figure~\ref{fig:nav_drawer}).
-The navigation drawer has existed before the concepts of Material Design were introduced and was later added to the list of material design patterns with minor styling recommendation.
+The navigation drawer has existed before the concepts of material design were introduced and was later added to the list of material design patterns with minor styling recommendation.
 In order to create a navigation drawer, a developer needs to add a root element to the layout file with two children.
 The root element must be a specific view called \textit{android.support.v4.widget.DrawerLayout}, which holds two children.
 The first child can be any view group element to hold the content of the app.
 The second child is a view that contains the content of the navigation drawer, which can be populated statically or dynamically with the drawer's list of items (e.g., \textit{ ListView} or \textit{android.support.design.widget.NavigationView}).
-To find apps with a navigation drawer, I use the following Sieveable search query:
+To find apps with a navigation drawer, I use the following Sieveable search queries:
 
 \inputminted
 [
@@ -89,12 +91,20 @@ fontsize=\footnotesize
 
 \noindent These two search queries returned 20,165 unique apps in total.
 To find the adoption rate of this design pattern over the years, I remove duplicate apps from the results, keep the first version in which the adoption is observed, and group the remaining results by year.
-Below, figure~\ref{fig:fab_years} shows the adoption rate of the navigation drawer over the years from 2013 to 2016.
+Below, figure~\ref{fig:navdrawer_years} shows the adoption rate of the navigation drawer over the years from 2013 to 2016.
 We can see an increase over the years but at a relatively slow rate (6.95\% is the average annual adoption increase).
 \begin{figure}[h]
 	\includegraphics[scale=0.55]{figures/findings/navdrawer_over_years.png}
 	\caption{The adoption rate of the Navigation Drawer over the years.}
-	\label{fig:fab_years}
+	\label{fig:navdrawer_years}
+\end{figure}
+We can group the results by the release date quarterly and download count to see the trends in adopting this design pattern among most and less downloaded apps.
+To better approximate the popularity of Android apps, I group the apps by download count into three main groups: a) most downloaded apps for apps with one million or more download times, b) middle downloaded apps for apps with 100,000 and fewer than 1,000,000 download counts, and c) least download apps for apps with fewer than 100,000 download counts.
+Figure~\ref{fig:navdrawer_quarter_download} shows that the adoption rate of the navigation drawer is more prevalent in apps with the most download count than others with the exception of the first two quarters of 2015.
+\begin{figure}[h]
+	\includegraphics[scale=0.5]{figures/findings/navdrawer_by_quarter_grouped_by_downloads.png}
+	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x axis shows the calendar quarter of the release date in which the adoption is observed, and the y axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
+	\label{fig:navdrawer_quarter_download}
 \end{figure}
 
 \section{Accessibility Mining Analysis}
