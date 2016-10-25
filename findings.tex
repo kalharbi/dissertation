@@ -121,13 +121,16 @@ Therefore, an app that is more accessible can benefit alls users.
 In this section, with all of these efforts in mind, I investigate two question: are apps becoming more or less accessible over time? Do developers assign higher priority to accessibility bugs and problems when updating their apps?
 In attempting to answer these questions
 
-\subsection{Accessibility Violations}
+\subsection{Accessibility Violation: Labeling Visual UI controls}
 Modern mobile platform features accessibility guidelines that serve as a living document that is always updated with changes to the platform.
 In android, the accessibility guidelines \cite{android_accessibility_guidelines} provide developers with a checklist of accessibility requirements \cite{android_accessibility_checklist} to help developers build more accessible applications.
 The first item of this list is describing visual user interface controls that do not have visible text.
-This is a common accessibility violation.....
-In mobile applications, many user interface elements use visual images to indicate the usage of a user interface element.
+This is a common accessibility violation in UI elements such as ImageButton and ImageView.
+In many applications, UI controls use visual images to indicate the usage (e.g., a camera icon on an ImageButton to take a picture).
 A UI control with no description text (also known as alternate text) is simply inaccessible to users with visual impairments.
+
+One can use Sieveable to invistigate the extent of this bug and whether developers pay attention to it over the years.
+For instance, the search query searches for apps with an ImageButton
 
 
 
