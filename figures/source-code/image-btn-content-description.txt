@@ -1,0 +1,23 @@
+<!-- Find all apps that have an ImageButton -->
+MATCH app
+WHERE
+   <ImageButton />
+   <date-published>(*)</date-published>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as downloads
+
+<!-- Find all apps that set the contentDescription statically in layout files-->
+MATCH app
+WHERE
+   <ImageButton android:contentDescription="*" />
+   <date-published>(*)</date-published>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as downloads
+
+<!-- Find all apps that set the contentDescription dynamically in source code files-->
+MATCH app
+WHERE
+   <code class="ImageButton" method="setContentDescription" />
+   <date-published>(*)</date-published>
+   <downloads>(*)</downloads>
+RETURN app, l$1 AS rDate, l$2 as downloads
