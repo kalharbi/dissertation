@@ -131,31 +131,37 @@ This event allowed developers of the less popular apps to close the gap and move
 
 \section{Accessibility Mining Analysis}
 The users of mobile devices are diverse with different physical capabilities including people with disabilities.
-Some users may not be able to see the app, distinguish between its colors, touch the screen, hear a sound from the app, or speak back to the app.
+Some users may not be able to touch or see the screen, distinguish between its colors, hear a sound from the app, or speak back to the app.
 Apps that are inaccessible to users with disabilities may exclude them from using important services and social activities.
 Android features a set of accessibility APIs that help developers build accessible apps for users who have special needs.
 Many research and development efforts are invested to address various accessibility issues and enhance existing system wide accessibility services.
 Platform owners provide accessibility services, APIs, and guidelines to help developers improve the accessibility of their apps and increase their audiences.
+But what is the impact of these efforts?
+Are these guidelines effective?
+Over the past few years since these APIs were released, have developers (collectively as a community) been doing a better or worse job in making their apps more accessible?
+If there's an improvement, has the improvement been steady, accelerating, or plateauing?
+As a research community, should we be satisfied with our progress or should we do more?
+Data collection and analysis of apps for the presence of accessibility problems can help us answer these questions and bring more attention to this area.
+
 Advancement in accessibility tools have wide range of benefits and applications to all users including users with no special needs.
-For instance, some of the technologies that we use on daily basis started as an accessibility tools and evolved to benefit all users (e.g., speech recognition and word completion).
+For instance, some of the technologies that we use on a daily basis started as an accessibility tools and evolved to benefit all users (e.g., speech recognition and word completion).
 Even a user with no disability may experience accessibility restrictions in certain environments, i.e., when someone is not able to touch the device while driving, or distinguish between colors in a sunny environment.
 Therefore, an app that is more accessible can benefit all users.
-With all of these efforts in mind, I investigate the following question: are developers getting better in improving the accessibility of their apps?
-In this section, I demonstrate how Sieveable can be used to answer this question and quantify the prevalence of accessibility violations over time.
+In the following section, I demonstrate how Sieveable can be used to answer some of the questions described above and quantify the prevalence of accessibility violations over time.
 
 \subsection{Accessibility Violation: Labeling Visual UI controls}
 Modern mobile platform features accessibility guidelines that serve as a living document that is always updated with changes to the platform.
-In android, the accessibility guidelines \cite{android_accessibility_guidelines} provide developers with a checklist of accessibility requirements \cite{android_accessibility_checklist} to help developers build more accessible applications.
+In android, the accessibility guidelines \cite{android_accessibility_guidelines} provide developers with a checklist of accessibility requirements to help developers build more accessible applications \cite{android_accessibility_checklist}.
 The first item of this list is labeling visual user interface controls that do not have visible text.
 This is a common accessibility violation in UI elements such as ImageButton and ImageView.
 In many applications, UI controls use visual images to indicate the usage (e.g., a camera icon on an ImageButton to take a picture).
-A UI control with no description text (also known as alternate text) is simply inaccessible to users with visual impairments.
+A UI control with no descriptive text (also known as alternate text) is simply inaccessible to users with visual impairments.
 It is worth noting that not all ImageView elements should be labeled since some are used for aesthetic purposes or visual spacing.
-It is particularly important to label all ImageButton elements since they meant to represent an action in the app.
+However, it is particularly important to label all ImageButton elements since they meant to represent an action in the app.
 Thus, analyzing apps for the presence of labels in ImageButton elements tend to produce more accurate results than other UI elements.
 
 One can use Sieveable to investigate the extent of this bug and whether developers pay attention to it over the years.
-For instance, below are the search queries I use in this analysis.
+Below are the search queries I use in this analysis:
 
 \inputminted
 [
@@ -169,7 +175,7 @@ fontsize=\footnotesize
 \noindent The first query is for finding apps that have an image button, while the last two queries are for finding apps that added a text label to an image button statically in layout files or dynamically in source code.
 We can analyze the results of these search queries and compute the ratio of labeled image buttons in each app.
 Figure~\ref{fig:img_btn_coverage_by_years} shows the average of accessible image button elements with text labels in all apps released from 2010 to 2016.
-We observe around 5\% increase of accessible image buttons from 2012 to 2014 but that growth rate dropped to about 1\% in 2015 and 2016.
+We observed, on average, around 5\% increase of accessible image buttons from 2012 to 2014 but that improvement growth rate reached a plateau at a lower level in 2015 and 2016.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.52]{./figures/findings/accessibility_accessible_image_btns_over_years.png}
@@ -181,17 +187,17 @@ We observe around 5\% increase of accessible image buttons from 2012 to 2014 but
 	\caption{The percentage of apps that have no accessible ImageButton elements grouped by download count and release year.}
 	\label{fig:img_btn_no_coverage_by_years}
 \end{figure}
-We can also sample the apps with no accessible image buttons (i.e. an app that has no label for all of its image buttons) and group them by download count.
-I used the results of the third search query to provide a more accurate estimate of apps that do not label image buttons statically or dynamically,
+We can also sample the apps with no accessible image buttons (i.e. an app that has no label in all of its image buttons) and group them by download count.
+Sieveable enables us to count for cases where text labels are added dynamically in the source code.
+Thus, the results of the previous queries are more accurate and can be used to quantify apps that do not label image buttons neither statically nor dynamically.
 Figure~\ref{fig:img_btn_no_coverage_by_years} shows the percentage of apps in three download count groups (top, middle, and bottom) that had no text labels in all the image buttons they used.
 This result shows that this accessibility bug is common across all apps of different download times. 
 It was even more common in the top downloaded apps in from 2011 to 2014.
 However, it dropped in the following two years to become relatively common in all three download count groups.
 
 The results of this analysis show a mixed view of accessibility improvements in Android apps over the years.
-While we have seen a small yet noticeable improvement in the years before 2015 but that growth rate dropped later in the following years.
-These findings prove that accessibility is still a problem for many of the most downloaded and popular apps.
-In addition, the results also highlight the severity of this accessibility problem across all apps with all popularity levels.
-The results presented here highlight the potential of using Sieveable in future work to estimate the accessibility of mobile apps over time and address accessibility problems.
+While we have seen a small yet noticeable improvement in the years before 2015 but that growth rate plateaued in 2016.
+These findings suggest that accessibility is still a problem for all apps including the most downloaded apps and bring to light the prevalence of this accessibility problem across all apps regardless of their popularity levels.
+The results presented here highlight the potential of using Sieveable in future work to estimate the accessibility of mobile apps over time and identify areas where accessibility violations are more severe.
 
 \section{Security Mining Analysis}
