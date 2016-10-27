@@ -115,11 +115,14 @@ To better approximate the popularity of Android apps, I group the apps by downlo
 Figure~\ref{fig:navdrawer_quarter_download} shows that the adoption rate of the navigation drawer is more prevalent in apps with the most download count than others with the exception of the first two quarters of 2015.
 The analysis shows how the adoption of this design is changing after multiple major platform events.
 We can see that this design is more adopted in top downloaded apps. 
-It is also noticeable that it experienced a period of little popularity at some points in time but later gained a resurgence of interest after the release of an official library.
+It is also noticeable that it experienced a period of low popularity at some points in time but later gained a resurgence of interest after the release of an official library.
 
-This analysis demonstrated the value of using a temporal analysis to studying design changes.
-UI design changes may become more or less popular over time, but they may react positively to a major platform event.
-This phenomena would not have been missed had we considered a single version of the app.
+Analyzing apps over time enabled us to capture a correlation between design changes and major platform events.
+UI design patterns may become more or less popular over time, but they may react positively to a related platform event.
+This phenomena would have been missed had we considered a single version of the app.
+Our finding suggests that the release of an official library (the design support library in this case) caused the adoption rate of the navigation drawer for apps that are less popular to soar.
+We observed that apps with less download counts maintained an adoption rate below 10\% before the release of the official library, and that adoption doubled to over 20\% after the release of the library.
+This event allowed developers of the less popular apps to close the gap and move forward to become close to top apps in design adoption.
 \begin{figure}[H]
 	\includegraphics[scale=0.5]{figures/findings/navdrawer_by_quarter_grouped_by_downloads.png}
 	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x axis shows the calendar quarter of the release date in which the adoption is observed, and the y axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
