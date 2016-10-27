@@ -1,20 +1,29 @@
 \chapter{Temporal Analysis of the Design and Development of Mobile Applications}
 \label{ch:findings_chapter}
-Sieveable enabled retrieving a sample of apps across multiple search criteria to meet a diverse set of search goals.
-In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time\footnote{The raw data, the source code of the data analysis, and a set of interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
+The trends in designing and developing mobile applications are always changing and evolving over time.
+Platform owners regularly introduce new features, remove previous ones, and change their best practices and guidelines.
+Since all of these changes are observed at some points in time, it is necessary to apply a temporal (time series) based analysis to capture interesting events and draw more meaningful statistical insights.
+Temporal analysis enables us to ask new questions and understand the changes in the design and development of mobile applications.
+The lack of effective retrieval systems and resources that provide access to the temporal nature of applications have limited the questions we might ask and resulted in studies that focus on a single snapshot in time.
+Sieveable is what gives us access to the temporal nature of mobile applications and helps us to answer diverse analysis questions.
+In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time in three areas: UI design, accessibility, and privacy.\footnote{The raw data, source code, and a set of interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
 
 \section{Visual Design Mining}
 
-Mobile UI design is always evolving and new guidelines are put into place to create a consistent experience across the platform.
-For instance, Google introduced material design, a design language that makes use of elements from print design, responsive transitions, and depth effects \cite{Google_Material_Design}.
-Google announced the main concepts of the design language on June 25, 2014.
-Since then several third-party implementations have been introduced and used by developers.
-A year later, Google introduced an official library called the Android Design Support Library, which allows developers to implement a number of material design components that are backward compatible with old devices.
-We can use Sieveable to find apps that use specific material design components and find when they were adopted by developers.
-We can also aggregate the results by download count and find trends in implementing them among popular and less popular apps.
+Mobile UI design guidelines are constantly updated to provide a better and consistent user experience across the platform.
+For instance, in June 2014, Google introduced material design, a design specification language that makes use of elements from print design, responsive transitions, and depth effects \cite{Google_Material_Design}.
+Since the concepts were announced, several third-party implementations have been built and used by developers.
+A year after the announcement, Google introduced an official library called the Android Design Support Library, which allows developers to implement a number of material design components that are backward compatible with old devices.
+Now, it has been over two years of efforts invested in creating concepts and tools to promote the use of this design language.
+We can use Sieveable to understand how these concepts are adopted over time and ask questions like:
+What is the state of adopting material design patterns?
+Did these concepts get adopted immediately by developers or at slow pace?
+Are there any factors that may have contributed into a sudden increase or decrease in adoption?
 
 \subsection{Material Design Components}
 In this section, I present a set of analyses on the adoption rate of two major material design components: the floating action button and the navigation drawer.
+The floating action button is arguably the most recognizable material design component and  represents the primary action in an app.
+The navigation drawer is perhaps the first design pattern that was introduced before material design and later was added to the design language.
 
 \subsubsection{Floating Action Button}
 \begin{figure}[H]
@@ -27,11 +36,13 @@ In this section, I present a set of analyses on the adoption rate of two major m
 \end{figure}
 The Floating Action Button (FAB) is a circled button floating above the UI to promote the primary action in the app (Figure~\ref{fig:figure_fab_screenshot}).
 While developers can create a custom FAB with material design style, there are a few libraries that simplify adding this widget.
-We can use Sieveable to aid developers and make an informed decision of using a specific library over other alternatives.
+To find apps that have this UI component, one will write custom scripts to parse large number of UI layout files and count for all possible implementation options.
+This task is achieved by writing a simple search query in Sieveable.
+We can use Sieveable to evaluate implementation alternatives and help developers make an informed decision of using a specific library over others.
 With Sieveable, one can examine the popularity of a specific UI library within any time window.
-This can also provide insightful feedback to UI framework engineers or developers on how well the components they developed are received by third-party developers.
+This can also provide insightful feedback to UI framework engineers on how well their efforts are received by developers.
 We can find the trends of adopting the FAB as a design pattern over time using different alternatives.
-At the time of writing, there are four alternative ways to implement the FAB in Android: the official design support library \cite{Android_Design_Support_Lib}, and three other additional third-party libraries \cite{android-floating-action-button, FloatingActionButton, fab}.
+At the time of writing, there are four common alternative ways to implement the FAB in Android: the official design support library \cite{Android_Design_Support_Lib}, and three other additional third-party libraries \cite{android-floating-action-button, FloatingActionButton, fab}.
 I use the following Sieveable search queries to retrieve a set of apps that implement the FAB using the previously mentioned libraries: 
 
 \inputminted
@@ -62,6 +73,7 @@ This shows that a small number developers tend to use third-party libraries to i
 The larger number of developers, however, are much quicker to use a consistent implementation by an official library.
 Finally, I analyzed the group of apps that started adding FAB earlier using a third-party library before the existence of the official library.
 I found that the majority of these apps have a low number of downloads (89.81\% with 100,000 download times or less compared to 10.19\% with more than 100,000 download times).
+%\todo[inline]{TODO: How big is FAB apps with respect to all material design apps?}
 
 \subsubsection{Navigation Drawer}
 \begin{figure}[H]
@@ -101,6 +113,13 @@ We can see an increase over the years but at a relatively slow rate (6.95\% is t
 We can group the results by the release date quarterly and download count to see the trends in adopting this design pattern among most and less downloaded apps.
 To better approximate the popularity of Android apps, I group the apps by download count into three main groups: a) most downloaded apps for apps with one million or more download times, b) middle downloaded apps for apps with 100,000 and fewer than 1,000,000 download counts, and c) least download apps for apps with fewer than 100,000 download counts.
 Figure~\ref{fig:navdrawer_quarter_download} shows that the adoption rate of the navigation drawer is more prevalent in apps with the most download count than others with the exception of the first two quarters of 2015.
+The analysis shows how the adoption of this design is changing after multiple major platform events.
+We can see that this design is more adopted in top downloaded apps. 
+It is also noticeable that it experienced a period of little popularity at some points in time but later gained a resurgence of interest after the release of an official library.
+
+This analysis demonstrated the value of using a temporal analysis to studying design changes.
+UI design changes may become more or less popular over time, but they may react positively to a major platform event.
+This phenomena would not have been missed had we considered a single version of the app.
 \begin{figure}[H]
 	\includegraphics[scale=0.5]{figures/findings/navdrawer_by_quarter_grouped_by_downloads.png}
 	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x axis shows the calendar quarter of the release date in which the adoption is observed, and the y axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
