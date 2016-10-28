@@ -174,25 +174,36 @@ fontsize=\footnotesize
 
 \noindent The first query is for finding apps that have an image button, while the last two queries are for finding apps that added a text label to an image button statically in layout files or dynamically in source code.
 We can analyze the results of these search queries and compute the ratio of labeled image buttons in each app.
-Figure~\ref{fig:img_btn_coverage_by_years} shows the average of accessible image button elements with text labels in all apps released from 2010 to 2016.
+We compute the percentage of accessible image buttons in each app as follows:
+$ coverage = \frac{image\_buttons\_with\_labels}{total\_image\_buttons}  $.
+Then, we compute the weighted mean for all apps in each year, the standard deviation as a measure of variability, and the standard error of the mean as follows:
+\[
+\bar{x} = \frac{\sum_{i=1}^N w_i x_i} {\sum_{i=1}^N w_i}
+\qquad , \qquad
+SD_{\bar{x}} = \sqrt{\frac{\sum_{i=1}^n w_i (x_i - \bar{x}^*)^2} {\frac{N-1}{N} \sum_{i=1}^n w_i}}
+\qquad , and  \qquad
+SE_{\bar{x}} = \frac{SD_{\bar{x}}}{\sqrt{N}}
+\]
+where $w_i$ is the number of image buttons, $x_i$ is the coverage, and N is the total number of observations (apps with image buttons).
+Figure~\ref{fig:img_btn_coverage_by_years} shows the weighted mean of accessible image button elements with text labels in all apps released from 2010 to 2016.
 We observed, on average, around 5\% increase of accessible image buttons from 2012 to 2014 but that improvement growth rate reached a plateau at a lower level in 2015 and 2016.
 
 \begin{figure}[H]
 	\includegraphics[scale=0.52]{./figures/findings/accessibility_accessible_image_btns_over_years.png}
-	\caption{The percentage of accessible image buttons in apps over the release years. The error bars represent the standard deviations, which show the variation among average values.}
+	\caption{The average of accessible image buttons in apps over the release years. The error bars represent the standard error of the mean.}
 	\label{fig:img_btn_coverage_by_years}
 \end{figure}
-\begin{figure}[H]
-	\includegraphics[scale=0.55]{figures/findings/accessibility_inaccessible_image_btns_by_year_and_download.png}
+\begin{figure}[h]
+	\includegraphics[scale=0.50]{figures/findings/accessibility_inaccessible_image_btns_by_year_and_download.png}
 	\caption{The percentage of apps that have no accessible ImageButton elements grouped by download count and release year.}
 	\label{fig:img_btn_no_coverage_by_years}
 \end{figure}
 We can also sample the apps with no accessible image buttons (i.e. an app that has no label in all of its image buttons) and group them by download count.
 Sieveable enables us to count for cases where text labels are added dynamically in the source code.
-Thus, the results of the previous queries are more accurate and can be used to quantify apps that do not label image buttons neither statically nor dynamically.
+Thus, the results of the previous queries are more accurate and can be used to quantify apps that do not label image buttons at all.
 Figure~\ref{fig:img_btn_no_coverage_by_years} shows the percentage of apps in three download count groups (top, middle, and bottom) that had no text labels in all the image buttons they used.
-This result shows that this accessibility bug is common across all apps of different download times. 
-It was even more common in the top downloaded apps in from 2011 to 2014.
+This result shows that this accessibility bug is common across all apps of different download times.
+It was even more common in the top downloaded apps in the years from 2011 to 2014.
 However, it dropped in the following two years to become relatively common in all three download count groups.
 
 The results of this analysis show a mixed view of accessibility improvements in Android apps over the years.
@@ -200,4 +211,20 @@ While we have seen a small yet noticeable improvement in the years before 2015 b
 These findings suggest that accessibility is still a problem for all apps including the most downloaded apps and bring to light the prevalence of this accessibility problem across all apps regardless of their popularity levels.
 The results presented here highlight the potential of using Sieveable in future work to estimate the accessibility of mobile apps over time and identify areas where accessibility violations are more severe.
 
+
 \section{Security Mining Analysis}
+Android uses a permission system to protect privacy- and security-sensitive resources.
+Android has recently changed its permission's model from install-time (pre 6.0) to a runtime permission system (6.0 and above).
+In the install-time model, users are prompted with a list of permissions an app requires when they try to install the app.
+In the runtime model, instead of showing permissions at install-time, Android gives users the choice of granting or denying a permission while running the app.
+Many research efforts have studied several privacy and security problems in the permission's model of Android (discussed in detail in chapter \ref{ch:related_work_chapter}).
+However, previous studies have been limited in their understanding of permission changes over time.
+It is valuable to ask how permission usage changes in Android apps.
+Do apps tend to request fewer or more permissions over time?
+Are developers becoming security-conscious or non-security-conscious over the years?
+Did they ask for more permissions to use in new features or included libraries?
+In this section, through an analysis of permission usage changes, I explore patterns in permission usage changes over time.
+
+I begin the analysis by looking at the apps that made changes to the requested permissions between two subsequent versions.
+I found that, on average, for the apps that added permissions, they added 2.28 permissions (standard deviation is 1.98). 
+For the apps that dropped permissions, they dropped 2.42 permissions on average (standard deviation is 2).
