@@ -223,8 +223,34 @@ It is valuable to ask how permission usage changes in Android apps.
 Do apps tend to request fewer or more permissions over time?
 Are developers becoming security-conscious or non-security-conscious over the years?
 Did they ask for more permissions to use in new features or included libraries?
-In this section, through an analysis of permission usage changes, I explore patterns in permission usage changes over time.
+In this section, through an analysis of permission usage changes, I demonstrate how easy it is to use Sieveable to perform these analyses.
+The analysis presented here uses the following Sieveable query:
 
-I begin the analysis by looking at the apps that made changes to the requested permissions between two subsequent versions.
-I found that, on average, for the apps that added permissions, they added 2.28 permissions (standard deviation is 1.98). 
-For the apps that dropped permissions, they dropped 2.42 permissions on average (standard deviation is 2).
+\inputminted
+[
+framesep=2mm,
+baselinestretch=1.2,
+bgcolor=MyLightGrayColor,
+fontsize=\footnotesize
+]
+{xml}{figures/source-code/all_system_permissions.txt}
+
+This query returns the system permissions, release date, rating, and download count for all apps in the dataset.
+The analysis of the search results is presented in two subsections: added and dropped permissions.
+
+
+\subsection{Added Permissions}
+I begin the analysis by looking at the apps that added permissions between two subsequent versions.
+I found that, on average, for apps that added permissions, they added 2.28 permissions (standard deviation is 1.98).
+
+
+\subsection{Dropped Permissions}
+
+
+\section{Summary}
+This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at unprecedented levels of analyses.
+A number of analyses touched on some aspects of the evolution of mobile apps in three areas: desing, accessibility, and security.
+In design, ...
+In accessibility, ...
+In security, ...
+These analyses give insights on how apps changes at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over historical app versions).
