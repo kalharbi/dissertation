@@ -122,7 +122,7 @@ UI design patterns may become more or less popular over time, but they may react
 This phenomena would have been missed had we considered a single version of the app.
 Our finding suggests that the release of an official library (the design support library in this case) caused the adoption rate of the navigation drawer for apps that are less popular to soar.
 We observed that apps with less download counts maintained an adoption rate below 10\% before the release of the official library, and that adoption doubled to over 20\% after the release of the library.
-This event allowed developers of the less popular apps to close the gap and move forward to become close to top apps in design adoption.
+This event allowed developers of the less popular apps to reduce the gap with top apps in design adoption.
 \begin{figure}[H]
 	\includegraphics[scale=0.5]{figures/findings/navdrawer_by_quarter_grouped_by_downloads.png}
 	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x axis shows the calendar quarter of the release date in which the adoption is observed, and the y axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
@@ -283,18 +283,18 @@ This suggest that developers tend to add more permissions over the years which m
 This analysis seeks to discover the trends in adding permissions throughout the apps' release history.
 In the entire dataset, I found that 13,976 apps (27.61\%) asked for more permissions in their updates.
 On average, they added 2.28 permissions (standard deviation is 2.57).
-\begin{figure}[h]
+\begin{figure}[H]
 	\includegraphics[scale=0.50]{figures/findings/added_permissions_downloads.png}
 	\caption{The total number of added permissions in apps grouped by download count.}
 	\label{fig:added_permissions_downloads}
 \end{figure}
-\begin{figure}[h]
+\begin{figure}[H]
 	\includegraphics[scale=0.60]{figures/findings/added_permissions_over_time.png}
 	\caption{The five most added permissions in each year. The x axis shows how many times the permission was added in each year.}
 	\label{fig:added_permissions_over_time}
 \end{figure}
 Figure~\ref{fig:added_permissions_downloads} shows the number of added permissions for apps by three download count groups (top, middle, bottom).
-It shows that the addition of one to five permissions seemed to be normal and relatively close across the three download groups.
+It shows that the addition of one to five permissions seemed to be normal and relatively similar among the three download groups.
 But as the number of added permissions increases to 15 or more, all the observations appear as outliers.
 
 Adding these permissions may have happened as a result of a framework upgrade, library adoption, or added features throughout the time of releasing a new app version.
@@ -306,12 +306,13 @@ It has been later deprecated (in Android 5.0), however, to protect user's privac
 The permission named \textit{android.permission.USE\_CREDENTIALS} appeared as the third most added permissions in 2015.
 This permission along with the \textit{android.permission.GET\_ACCOUNTS} usually get added automatically during the build process when the developer adds the Google Play services library to the dependencies list in the app's \textit{gradle.build} file.
 It was later deprecated in API 23 (Android 6.0), so it was not seen among the five most added permissions in 2016.
-These findings suggest that apps tend to add more permissions over the time related to either dependency or ad libraries rather than to support core app features.
+These findings suggest that apps tend to add more permissions related to either dependency or ad libraries rather than core app features.
 
 \section{Summary}
 This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at unprecedented levels of analyses.
-A number of analyses touched on some aspects of the evolution of mobile apps in three areas: design, accessibility, and security.
-In design, ...
-In accessibility, ...
-In security, I uncovered that less popular apps tend to request either a small number of permissions, which are common in ad libraries, or rather a large and unusual number of permissions compared to the popular apps.
-These analyses give insights on how apps changes at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over historical app versions).
+I presented a number of analyses in three main areas: design, accessibility, and security.
+In design, the release of official design helper libraries enabled apps that had few downloads to reduce the gap with the top downloaded apps in adopting best design practices.
+In accessibility, all apps including the most downloaded ones had significant accessibility problems.
+In security, I uncovered that apps with few downloads tend to request either a small number of permissions, which are common in ad libraries, or a rather large and unusual number of permissions compared to the apps with high download counts.
+Furthermore, the top most added permissions in each year are the ones often required by ad libraries, which raises privacy concerns.
+These analyses provided insights on how apps changed at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over multiple app versions).
