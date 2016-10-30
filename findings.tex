@@ -212,7 +212,7 @@ These findings suggest that accessibility is still a problem for all apps includ
 The results presented here highlight the potential of using Sieveable in future work to estimate the accessibility of mobile apps over time and identify areas where accessibility violations are more severe.
 
 
-\section{Security Mining Analysis}
+\section{Privacy Mining Analysis}
 Android uses a permission system to protect privacy- and security-sensitive resources.
 Android has recently changed its permission's model from install-time (pre 6.0) to a runtime permission system (6.0 and above).
 In the install-time model, users are prompted with a list of permissions an app requires when they try to install the app.
@@ -221,7 +221,7 @@ Many research efforts have studied several privacy and security problems in the 
 However, previous studies have been limited in their understanding of permission changes over time.
 It is valuable to ask how permission usage changes in Android apps.
 Do apps tend to request fewer or more permissions over time?
-Are developers becoming security-conscious or non-security-conscious over the years?
+Are developers becoming privacy-conscious or non-privacy-conscious over the years?
 Did they ask for more permissions to use in new features or included libraries?
 In this section, through an analysis of permission usage changes, I demonstrate how easy it is to use Sieveable to perform these analyses.
 The analysis presented here uses the following Sieveable query:
@@ -310,9 +310,9 @@ These findings suggest that apps tend to add more permissions related to either 
 
 \section{Summary}
 This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at unprecedented levels of analyses.
-I presented a number of analyses in three main areas: design, accessibility, and security.
+I presented a number of analyses in three main areas: design, accessibility, and privacy.
 In design, the release of official design helper libraries enabled apps that had few downloads to reduce the gap with the top downloaded apps in adopting best design practices.
 In accessibility, all apps including the most downloaded ones had significant accessibility problems.
-In security, I uncovered that apps with few downloads tend to request either a small number of permissions, which are common in ad libraries, or a rather large and unusual number of permissions compared to the apps with high download counts.
+In privacy, I uncovered that apps with few downloads tend to request either a small number of permissions, which are common in ad libraries, or a rather large and unusual number of permissions compared to the apps with high download counts.
 Furthermore, the top most added permissions in each year are the ones often required by ad libraries, which raises privacy concerns.
 These analyses provided insights on how apps changed at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over multiple app versions).
