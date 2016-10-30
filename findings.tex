@@ -6,7 +6,7 @@ Since all of these changes are observed at some points in time, it is necessary 
 Temporal analysis enables us to ask new questions and understand the changes in the design and development of mobile applications.
 The lack of effective retrieval systems and resources that provide access to the temporal nature of applications have limited the questions we might ask and resulted in studies that focus on a single snapshot in time.
 Sieveable is what gives us access to the temporal nature of mobile applications and helps us to answer diverse analysis questions.
-In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time in three areas: UI design, accessibility, and privacy.\footnote{The raw data, source code, and a set of interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
+In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time in three areas: UI design, accessibility, and privacy.\footnote{The raw data, source code, additional analyses, and interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
 
 \section{Visual Design Mining}
 
@@ -236,21 +236,82 @@ fontsize=\footnotesize
 {xml}{figures/source-code/all_system_permissions.txt}
 
 This query returns the system permissions, release date, rating, and download count for all apps in the dataset.
+Since the goal of this analysis is to study permission changes over time, I removed all apps that had only one version in the dataset.
+This narrowed the sample of apps to 50,618 unique apps.
 The analysis of the search results is presented in two subsections: added and dropped permissions.
 
 
-\subsection{Added Permissions}
-I begin the analysis by looking at the apps that added permissions between two subsequent versions.
-I found that, on average, for apps that added permissions, they added 2.28 permissions (standard deviation is 1.98).
+\subsection{Analyzing Permission Usage}
+\begin{figure}[h]
+	\includegraphics[scale=0.55]{figures/findings/total_permissions.png}
+	\caption{The total number of requested permissions.}
+	\label{fig:total_permissions}
+\end{figure}
+The average number of requested permissions is 7.33 permissions (standard deviation is 5.30).
+Figure~\ref{fig:total_permissions} shows the distribution of the total requested permissions in apps.
+It shows that the majority of apps requested two permissions in total.
+These apps appeared to be less popular (79.12\% with less than 100,000 downloads).
+This raises the question what are these two permissions that these apps depend on?
+To answer this question, I aggregated the list permissions for these apps and found that the top three permissions they requested to be:
+\textit{android.permission.INTERNET, android.permission.ACCESS\_NETWORK\_STATE, android.permission.WRITE\_EXTERNAL\_STORAGE.}
+The first two permissions are found to be among the most frequently used permissions in ad libraries \cite{Liu_2015_MobiSys}.
+In addition, I analyzed the apps that had an unusual total of requested permissions (a sum total that falls within the most 10 requested permission counts).
+I found that 90\% of these apps have a download count of 100,000 or less and only one app (the T-Mobile offical app) that has requested 86 permissions and had 10 million downloads.
+The app with the highest requested permission (122 permissions) is called Webkey (package name is com.webkey).
+This app is listed under the tools category, had 100,000 downloads, 4.44 star rating, and claims that it provides a remote control of the device from any browser.
+Finally, I discovered that the average number of requested permission keeps increasing over the years (see table~\ref{tab:average_permissions_years}).
+This suggest that developers tend to add more permissions over the years which make users more susceptible to privacy and security problems over time.
+\begin{table*}[t]
+	\def\arraystretch{2}
+	\centering
+	\begin{tabular}{ |c|c|c|c| }
+		\hline
+		Year & Average & Standard Deviation & Total apps \\ \hline
+		2010 & 2.82 & 2.79 & 547 \\  \hline
+		2011 & 3.62 & 2.85 & 2,718 \\ \hline
+		2012 & 4.95 & 4.17 & 7,518 \\ \hline
+		2013 & 6.56 & 4.77 & 50,190 \\ \hline
+		2014 & 6.71 & 4.99 & 55,242 \\ \hline
+		2015 & 7.72 & 5.35 & 120,840 \\ \hline
+		2016 & 8.72 & 5.97 & 40,435 \\
+		\hline
+	\end{tabular}
+	\caption{Summary statistics on the total number of permissions requested by apps over the years}
+	\label{tab:average_permissions_years}
+\end{table*}
+\subsection{Analyzing Added Permissions}
+This analysis seeks to discover the trends in adding permissions throughout the apps' release history.
+In the entire dataset, I found that 13,976 apps (27.61\%) asked for more permissions in their updates.
+On average, they added 2.28 permissions (standard deviation is 2.57).
+\begin{figure}[h]
+	\includegraphics[scale=0.50]{figures/findings/added_permissions_downloads.png}
+	\caption{The total number of added permissions in apps grouped by download count.}
+	\label{fig:added_permissions_downloads}
+\end{figure}
+\begin{figure}[h]
+	\includegraphics[scale=0.60]{figures/findings/added_permissions_over_time.png}
+	\caption{The five most added permissions in each year. The x axis shows how many times the permission was added in each year.}
+	\label{fig:added_permissions_over_time}
+\end{figure}
+Figure~\ref{fig:added_permissions_downloads} shows the number of added permissions for apps by three download count groups (top, middle, bottom).
+It shows that the addition of one to five permissions seemed to be normal and relatively close across the three download groups.
+But as the number of added permissions increases to 15 or more, all the observations appear as outliers.
 
-
-\subsection{Dropped Permissions}
-
+Adding these permissions may have happened as a result of a framework upgrade, library adoption, or added features throughout the time of releasing a new app version.
+To explore the trends in adding permissions over time, I obtain a list of the five most added permissions in each year ( see figure~\ref{fig:added_permissions_over_time}).
+This graph shows that the most added permissions are always among the most frequently used permissions in ad libraries \cite{Liu_2015_MobiSys}
+The \textit{android.permission.GET\_TASKS} appeared as the fifth most added permission in 2013, which is used to get the user's most recent tasks.
+Despite that APIs that depend on this permission could leak personal information, it can be granted without the user's approval at install time.
+It has been later deprecated (in Android 5.0), however, to protect user's privacy.
+The permission named \textit{android.permission.USE\_CREDENTIALS} appeared as the third most added permissions in 2015.
+This permission along with the \textit{android.permission.GET\_ACCOUNTS} usually get added automatically during the build process when the developer adds the Google Play services library to the dependencies list in the app's \textit{gradle.build} file.
+It was later deprecated in API 23 (Android 6.0), so it was not seen among the five most added permissions in 2016.
+These findings suggest that apps tend to add more permissions over the time related to either dependency or ad libraries rather than to support core app features.
 
 \section{Summary}
 This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at unprecedented levels of analyses.
-A number of analyses touched on some aspects of the evolution of mobile apps in three areas: desing, accessibility, and security.
+A number of analyses touched on some aspects of the evolution of mobile apps in three areas: design, accessibility, and security.
 In design, ...
 In accessibility, ...
-In security, ...
+In security, I uncovered that less popular apps tend to request either a small number of permissions, which are common in ad libraries, or rather a large and unusual number of permissions compared to the popular apps.
 These analyses give insights on how apps changes at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over historical app versions).
