@@ -10,10 +10,85 @@ b) Accessibility researchers can use it to find answers to accessibility questio
 c) Privacy and security researchers can use it to find apps that request an unusual number of permissions or use vulnerable APIs.
 d) Program analysts can use Sieveable to reduce the time to find examples of interest to apply defect analysis.
 e) Data mining researchers can mine applications efficiently and build machine-learning applications at large scale without incurring the overhead of collecting and indexing large datasets.
-In a previous work \cite{Alharbi_2015_MobileHCI}, these types of analyses would require custom scripts to be written and executed on a cluster, which would require several days of work.
+In a prior work (discussed in chapter~\ref{ch:mining_design_changes_chapter}), these types of analyses would require custom scripts to be written and executed on a cluster, which would require several days of work.
 In contrast, Sieveable is able to reduce the problem to a simple search query, which takes an analyst only seconds to specify and minutes to run.
 
-In this chapter, I present several illustrative search queries to show that Sievable enables users to conduct many types of analyses.
+In this chapter, I discuss Sieveable's capabilities, how queries can be formulated, and present several illustrative search queries to show that Sievable enables users to conduct many types of analyses.
+\section{Search Queries}
+I briefly described the syntax of the search queries in the previous chapter.
+In this section, I describe the syntax in more detail and highlight important search features.
+Sieveable uses a SQL-like declarative query syntax.
+The syntax is composed of three main clauses:
+\begin{itemize}
+	\item \textit{MATCH} The app to match.
+	\item \textit{WHERE} The search condition.
+	\item \textit{RETURN} The results to return.
+\end{itemize}
+The \textit{MATCH} clause defines the apps to match for the given search conditions.
+One can retrieve all app versions by simply writing:
+\begin{minted}{xml}
+MATCH app
+\end{minted}
+Conditional statements can be added to the match clause to limit the search to an app version.
+For example, below is the syntax of the match clause to restrict the search to the latest app version.
+\begin{minted}{xml}
+MATCH app(latest=true)
+\end{minted}
+Or to narrow the search to the latest version of a specific app:
+\begin{minted}{xml}
+MATCH app(package=com.google.android.music, latest=true)
+\end{minted}
+
+The \textit{WHERE} clause defines specific search conditions. 
+A search condition in its simplest form is an example of a single listing details field, UI element, manifest element, or an API call.
+Multiple search conditions can be combined together allowing for a deep search across multiple levels.
+The syntax used here is an example of UI, manifest elements, or listing details fields.
+For code queries, Sieveable using a specific XML element in the where clause to recognize code queries.
+For example, the where clause for a code query will be specified as follows:
+\begin{minted}{xml}
+<code class="fully-qualified-class-name" method="method-name">
+\end{minted}
+Multi-level search conditions can be added to the \textit{WHERE} clause.
+Sieveable also supports multiple character wildcard searches in the WHERE clause.
+This is in particular useful when the value of a specific XML element or attribute is unknown.
+For example, when searching for custom UI components in a specific app: \textless com.whatsapp.*\textgreater.
+Another example is when searching for an unknown XML element, we can use the underscore character as the tag name:
+\begin{minted}{xml}
+<TabHost>
+    <_></_>
+    <_></_>
+</TabHost>
+\end{minted}
+
+The \textit{RETURN} clause defines the subset of fields to include in the results.
+Projection fields can be added to the RETURN clause to indicate which fields to include in the search result.
+For example, below is a query to retrieve the download count for all apps in the dataset.
+\begin{minted}{xml}
+MATCH app
+WHERE
+<downloads>(*)</downloads>
+RETURN app, l$1
+\end{minted}
+Note that, we specified ``(*)'' as the text value of the downloads tag because we do not know what the actual value is, and we want to retrieve that value and include it with the results.
+The above return clause contains the app info object (package name, version name, and version code), and the listing details projection field \textit{l\$1} which represents the retrieved download count.
+Listing~\ref{lst:complete_query_example} shows a query that combines all these features together.
+\begin{listing}[ht]
+	\begin{minted}{xml}
+	MATCH app(latest=true)
+	WHERE
+	<store-category>Lifestyle</store-category>
+	<downloads>(*)</downloads>
+	<Button android:text="(*)"/>
+	<uses-permission android:name="(android.permission.*)"/>
+	<code class="android.hardware.Camera" method="takePicture"/>
+	RETURN app, l$1 AS downloads, u$1 AS button_label, m$1 AS permissions
+	\end{minted}
+	\caption{Sieveable query to find apps in the \textit{Lifestyle} category, have a \textit{Button} with a text label, use one or more system permissions, and call the takePicture API call. The query result will include the app info object (package name, version code, and version name), the download count of the apps, the text labels of all the buttons, and the list of system permissions they required.}
+	\label{lst:complete_query_example}
+\end{listing}
+
+In the next sections, I describe how Sieveable can be used in different scenarios to answer analysis questions in three areas: UI design, security, and program analysis.
+The gaol is to highlight the utility of Sieveable and how it simplifies the analysis task to a simple search query. 
 
 \section{Design Queries}
 % we have lots of those
@@ -26,7 +101,7 @@ We can also aggregate the results and find trends in implementing one design ove
 Many apps allow users to sign into their accounts to enable them to use certain features.
 Some apps use the sign in screen as the first screen that welcomes new users to their applications.
 Sign in screens usually take the form of a single sign in button.
-To find such examples, we query Sieveable for apps that use a Button with the phrase ``Sign In''. 
+To find such examples, we can write a query in Sieveable to find apps that use a Button with the phrase ``Sign In''. 
 We can also include the number of downloads in the result fields to reflect on how popular they are:
 \begin{minted}{xml}
     MATCH app
@@ -35,28 +110,15 @@ We can also include the number of downloads in the result fields to reflect on h
         <downloads>(*)</downloads>
     RETURN app, $1
 \end{minted}
-This query resulted in 1,459 apps. The first response containing 10 results was received in 1.62 seconds while the request to return all the results completed in 4 minutes. By analyzing the downloads count for the results, we can show the distribution of downloads for all apps that use this design option (Figure~\ref{fig:fig_signInDownloadDist}a).
-
-We can use Sieveable to find alternative ways of designing a sign in screen.
+We can also use Sieveable to find alternative ways of designing a sign in screen.
 For example, we can also search for apps that use a TextView as a sign in button and obtain their download count to compare it with the previous results:
 \begin{minted}{xml}
     MATCH app
     WHERE
         <TextView android:text="Sign In"/>
         <downloads>(*)</downloads>
-    RETURN app
+    RETURN app, $1
 \end{minted}
-This query returned 577 apps.
-We received the first response that contains 10 results in 1.2 seconds while the request to return all the results completed in 1.8 minutes. Figure~\ref{fig:fig_signInDownloadDist}b shows the apps by their downloads amount.
-
-\begin{figure}[H]
-\centering
-\subfloat[Sign in Button]{{\includegraphics[scale=0.3]{figures/sieveable-deep-search/signInBtnDownloadDist} }}%
-\qquad
-\subfloat[Sign in TextView]{{\includegraphics[scale=0.3]{figures/sieveable-deep-search/signInTextViewDownloadDist} }}%
-\caption{Download distribution of apps that have a sign in screen.}%
-\label{fig:fig_signInDownloadDist}
-\end{figure}
 
 \subsubsection{Design Interactions}
 Mobile apps feature unique interactions allowing users to navigate within the app using various touch gestures and UI controls. We can use Sieveable to explore real-world examples of apps that use a combination of gestures and UI controls and identify common patterns among them.
@@ -75,20 +137,12 @@ To find such examples, we can use Sieveable to search for apps by three levels s
 MATCH app
 WHERE
 <android.support.v4.widget.SwipeRefreshLayout>
-<ListView/>
+  <ListView/>
 </android.support.v4.widget.SwipeRefreshLayout>
-<code 
-class=
-"android.support.v4.widget.SwipeRefreshLayout"
-method="setOnRefreshListener" />
+<code class="android.support.v4.widget.SwipeRefreshLayout" method="setOnRefreshListener" />
 <store-category>(*)</stroe-category>
 RETURN app, $1
 \end{minted}
-
-This query produced 277 apps.
-The first 10 results response was received in 1.7 seconds while the request to return all the results completed in 49 seconds.
-The query results include the list of store categories for these apps. We found that the top categories for apps that use the the pull to refresh gesture are: Sports (14\%), News \& Magazines (8.9\%), and Social (8.9\%).
-This highlights the amount of updatable content offered by apps in these categories.
 
 \section{Security Queries}
 The popularity of mobile apps have increased the exploitation of their vulnerabilities.
@@ -107,18 +161,13 @@ An attacker may send a link to the user of a vulnerable app and gain access to a
 This vulnerability was fixed in Android 4.2 but the fix is not effective unless the app targets the API level 17 or higher \cite{WebViewVulnerability}.
 Sieveable can be used to find apps that are possible candidates for this vulnerability.
 We can search for apps that set the Manifest attribute \textit{targetSdkVersion} to a value less than 17.  Below is an example query.
-
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<code 
-	class="android.webkit.WebView" 
-	method="addJavascriptInterface" />
+	<code class="android.webkit.WebView" method="addJavascriptInterface" />
 	<uses-sdk android:targetSdkVersion="12" />
 	RETURN app
 \end{minted}
-
-This query resulted in 66 apps. The first 10 results returned in 2.5 seconds and the entire request completed in 17 seconds.
 
 \underline{\textbf{Permissions:}}
 The security permissions system is the core component of Android security.
@@ -132,15 +181,11 @@ For example, we can use the following query to find apps that request 11 or more
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<uses-permission 
-	android:name= "android.permission.*" 
-	__min="11" />
-	<uses-permission 
-	android:name= "*_SMS" />
+	<uses-permission android:name= "android.permission.*" __min="11" />
+	<uses-permission android:name= "*_SMS" />
 	RETURN app
 \end{minted}
 
-This query produced 5,708 apps in 1.4 minutes. The first 10 results were received in 122 milliseconds.
 \section{Program Analysis Queries}
 Static program analysis tools are used to examine the source code statically to detect vulnerabilities and possible runtime errors.
 Perhaps the most common approach applied in static analysis is searching plain text source files for lines matching a string.
@@ -162,14 +207,10 @@ For example, below is a query that searches for apps that request the \textit{Ca
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<code class="android.hardware.Camera"
-	method="open"/>
-	<uses-permission 
-	android:name="android.permission.CAMERA"/>
+	<code class="android.hardware.Camera" method="open"/>
+	<uses-permission android:name="android.permission.CAMERA"/>
 	RETURN app
 \end{minted}
-
-This query resulted in 9,846 apps. The first 10 results were received in 25 seconds, while the entire query took 36.4 seconds to complete.
 
 % Bug Fixes
 \underline{\textbf{{Bug Fixes:}}}
@@ -186,16 +227,13 @@ We can use Sieveable to get a set of apps that might be candidates for bug fixes
 \begin{minted}{xml}
 	MATCH app
 	WHERE
-	<code class="android.app.Service"
-	method="onStartCommand"/>
+	<code class="android.app.Service" method="onStartCommand"/>
 	<whats-new>bug fixes</whats-new> 
 	RETURN app
 \end{minted}
 
-This query returned 2,119 apps in 16 seconds. The first 10 results were received in 70 milliseconds.
-
 \section{Summary}
-This chapter presented a set of illustrative query examples that spanned across multiple levels and met diverse search goals.
-Sieveable opens up a wide opportunity to apply an in-depth analysis of mobile apps across multiple levels to investigate emergent trends in mobile apps development.
-For more information about Sieveable deep queries including over 100 query examples -- please visit:
-\url{http://sieveable.io}
+This chapter described Sieveable search queries and how a complex analysis task can be expressed in a simple search query.
+I explained how one could use Sieveable to answer analysis questions in three areas: UI design, security, and program analysis.
+I presented a set of illustrative query examples that spanned across multiple levels and met diverse search goals.
+These queries illustrate the powerful approach Sieveable uses, which can open up a wide opportunity to apply an in-depth analysis of mobile apps across multiple levels to investigate emergent trends in mobile apps development.
