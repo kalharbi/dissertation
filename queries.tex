@@ -13,7 +13,7 @@ e) Data mining researchers can mine applications efficiently and build machine-l
 In a prior work (discussed in chapter~\ref{ch:mining_design_changes_chapter}), these types of analyses would require custom scripts to be written and executed on a cluster, which would require several days of work.
 In contrast, Sieveable is able to reduce the problem to a simple search query, which takes an analyst only seconds to specify and minutes to run.
 
-In this chapter, I discuss Sieveable's capabilities, how queries can be formulated, and present several illustrative search queries to show that Sievable enables users to conduct many types of analyses.
+In this chapter, I discuss Sieveable's capabilities, how queries can be formulated, and present several illustrative search queries to show that Sieveable enables users to conduct many types of analyses.
 \section{Search Queries}
 I briefly described the syntax of the search queries in the previous chapter.
 In this section, I describe the syntax in more detail and highlight important search features.
@@ -145,7 +145,7 @@ RETURN app, $1
 \end{minted}
 
 \section{Security Queries}
-The popularity of mobile apps have increased the exploitation of their vulnerabilities.
+The popularity of mobile apps resulted in an increase in the number of exploited vulnerabilities.
 Security researchers and mobile apps security analysts use sophisticated techniques to detect software vulnerabilities.
 However, their techniques are largely constrained by the availability of samples of apps that are vulnerable to attacks.
 Sieveable can be used to perform code search queries for apps that are vulnerable to attacks as a result of weak API implementations.
@@ -190,7 +190,7 @@ For example, we can use the following query to find apps that request 11 or more
 Static program analysis tools are used to examine the source code statically to detect vulnerabilities and possible runtime errors.
 Perhaps the most common approach applied in static analysis is searching plain text source files for lines matching a string.
 Opening a large number of files, scanning them for matches and combing the results with other parsing tools (e.g., UI and Manifest) is a frustrating process. 
-In addition, finding a sample of apps that match a given criteria (e.g., permissions, UI structure) along with the source code text search is a challenging search task.
+In addition, finding a sample of apps that match a given criterion (e.g., permissions, UI structure) along with the source code text search is a challenging search task.
 Static analysis researchers are still constrained by the lack of a large-scale comprehensive search systems to work with.
 Sieveable's complete view of the app helps researchers find samples by multiple search criteria and focus their efforts on designing more rigorous static analysis tools.
 This is in particular valuable for static analysis tools because it reduces the overhead of obtaining samples and increases the sample size.

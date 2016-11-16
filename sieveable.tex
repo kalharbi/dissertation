@@ -45,7 +45,7 @@ Design data is hierarchical; the layout files specify the relationship between v
 Program data is highly structural as it involves a large number of names of classes, methods, and variables.
 Mining apps in multiple views would require an integrated infrastructure that supports document-oriented, hierarchical, and structural data, and provides an easy interface to store, index, mine and analyze such data.
 
-In this chapter, I pursues a more general analysis approach that takes a holistic view of the apps over time and can potentially accomplish what is currently not possible in a single-view, single-version approach.
+In this chapter, I pursue a more general analysis approach that takes a holistic view of the apps over time and can potentially accomplish what is currently not possible in a single-view, single-version approach.
 I present \emph{Sieveable}, a novel retrieval platform for multi-view data mining of apps on a large scale to address the needs mentioned above.
 I discuss a new query language with a declarative, ``example-based'' syntax.
 Using this language, analysts could quickly retrieve a sample from a large corpus of apps that meet certain criteria with respect to the listing view, design view, and program view in an integrated manner.
@@ -109,7 +109,7 @@ We download the Android Application Package (APK) file for apps from the officia
 For each APK file we download and add to the dataset, a web crawler is run to obtain its listing details web page.
 Next, we parsed the listing details HTML page to extract store listing values.
 In order to expose the app's UI and code structure, we run a reverse-engineering tool to decompile it, which results in a directory tree of app files that make up the app. 
-With more than one year effort, we manged to collect 452,775 apps with multiple versions\footnote{Note that sometimes the crawler was down, so it may have missed a number of updates.}.
+With more than one year effort, we managed to collect 452,775 apps with multiple versions\footnote{Note that sometimes the crawler was down, so it may have missed a number of updates.}.
 
 \subsubsection{Features Extraction}
 Once an app is downloaded and decoded, we run a set of tools to extract features at four levels:
@@ -224,7 +224,7 @@ The return clause in the submitted query includes only a single app field, so Si
 In this section, we discuss the technical details of designing and implementing our system. The system consists of six main components: app crawlers, feature extractors, data indexers, data store servers, DOM matchers, and a restful API (see Figure~\ref{fig:fig_architecture}).
 
 \subsection{App Crawlers}
-Sieveable features two crawlers that collect our dataset of apps: apps crawler and listing details web page crawler,
+Sieveable features two crawlers that collect our dataset of apps: apps crawler and listing details web page crawler.
 The app crawler is responsible for downloading APK files from the Google Play store.
 We feed a dictionary of popular Android search keywords into the crawler.
 Google has no official API for downloading APK files.
@@ -262,7 +262,7 @@ We save the extracted API calls in one text file per app.
 \subsection{Data Indexers}
 Sieveable indexes the extracted features in Solr collections for fast data access.
 A collection is a complete logical index.
-We use five Solr logical indexes to index our dataset: listing index, UI tag index, ui structural index, manifest tag index, and code index.
+We use five Solr logical indexes to index our dataset: listing index, UI tag index, UI structural index, manifest tag index, and code index.
 
 \textbf{Indexing Listing Details:} It contains all listing detail fields. Four fields are indexed as generic text fields (description, title, ``what's new'', and reviews) to support text based search.
 
