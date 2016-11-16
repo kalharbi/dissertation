@@ -119,13 +119,13 @@ Therefore, we designed and implemented a system dedicated to supporting our anal
 
 \begin{figure*}[!t]
 	\centering
-	\includegraphics[width=16cm, height=5cm]{figures/design-pattern-changes/system_architecture}
+	\includegraphics[width=16cm, height=5cm]{figures/design-pattern-changes/system_architecture.png}
 	\caption{Architecture of the analytic system.}
 	\label{fig:fig_system_architecture}
 \end{figure*}
 
 \begin{table*}[!t]
-	\includegraphics[width=16cm, height=2cm]{figures/design-pattern-changes/release_date}
+	\includegraphics[width=16cm, height=2cm]{figures/design-pattern-changes/release_date.png}
 	\caption{The number of apps by release date grouped by quarters.}
 	\label{tbl:release_date}
 \end{table*}
@@ -162,14 +162,14 @@ It uses string pattern matching techniques (e.g., grep, regular expressions) to 
 Our data store is built on top of two database technologies: a NoSQL document-oriented database for storing apps listing detail features, code features, and APK files.
 The second database is a graph database for storing the XML elements of layout files. The document-oriented database is a MongoDB instance, an open-source document- oriented database scalable to accommodate large and complex data. Our MongoDB instance comprises five collections: listing details, the AndroidManifest features, code features, and two GridFS collections to store the binary APK files and additional metadata. The MongoDB instance contains collections for over 56,349 APK files for 24,436 unique apps with multiple releases. The total size of the database is 501 GB hosted on a 24-core server with 47 GB RAM running Ubuntu 12.04. Over the observation period of our analysis (from January 2013 to June 2014), we collected a minimum number of versions per app in two versions in our dataset, which represents 80.1\% of the dataset (Figure~\ref{fig:fig_dataset}). Table~\ref{tbl:release_date} shows the number of apps by release date, and Figure~\ref{fig:fig_downloads_ratings} shows the download count distribution by their ratings.
 \begin{figure}
-	\includegraphics[width=6in, height=3in]{figures/design-pattern-changes/dataset}
+	\includegraphics[width=6in, height=3in]{figures/design-pattern-changes/dataset.png}
 	\caption{The distribution of apps by versions.}
 	\label{fig:fig_dataset}
 \end{figure}
 
 
 \begin{figure*}[!t]
-	\includegraphics[width=16.5cm, height=8cm]{figures/design-pattern-changes/downloads_ratings}
+	\includegraphics[width=16.5cm, height=8cm]{figures/design-pattern-changes/downloads_ratings.png}
 	\caption{The download distribution of the apps by rating stars. Colors show details about the rating.}
 	\label{fig:fig_downloads_ratings}
 \end{figure*}
@@ -274,7 +274,7 @@ Among these, 295 (26.4\%) were not resizable before and became resizable only in
 In all cases, we did not find any information in the listing (i.e., description and what's new sections) mentioning changes in home widget support. Figure~\ref{fig:fig_resizble_widgets}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/resizble_widgets}
+	\includegraphics{figures/design-pattern-changes/resizble_widgets.png}
 	\caption{Two versions of an app titled ``Business Insider'' before (left) and after (right) adding the resizing functionality to its home screen widget.}
 	\label{fig:fig_resizble_widgets}
 \end{figure}
@@ -311,7 +311,7 @@ In the ``what's new'' section of its listing on Google Play, the phrase ``UI Cha
 Figure~\ref{fig:fig_tabhost}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/tabhost}
+	\includegraphics{figures/design-pattern-changes/tabhost.png}
 	\caption{Two versions of an app titled ``DDLive''. The version on the left uses TabHost and the version on the right uses a Fragment that contains a list of items.}
 	\label{fig:fig_tabhost}
 \end{figure}
@@ -342,7 +342,7 @@ Among them, 1,814 (45.8\%) used Fragment for the first time and only 139 (3.5\%)
 Figure~\ref{fig:fig_fragment}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/fragment}
+	\includegraphics{figures/design-pattern-changes/fragment.png}
 	\caption{Two versions of an app titled ``Shopping List'' before (left) and after (right) adopting the Fragment design pattern.}
 	\label{fig:fig_fragment}
 \end{figure}
@@ -375,7 +375,7 @@ Among them, 941 (20.8\%) added this pattern for the first time. 149 (3.3\%) apps
 Figure~\ref{fig:fig_horizontal_paging}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/horizontalpaging}
+	\includegraphics{figures/design-pattern-changes/horizontalpaging.png}
 	\caption{Example of an app titled ``JEFIT Workout Exercise Trainer'' before (left) and after (right) adopting the Horizontal Paging design pattern.}
 	\label{fig:fig_horizontal_paging}
 \end{figure}
@@ -403,7 +403,7 @@ We found 8,483 (34.7\%) apps used the Action Bar with Tabs.
 Among them, 2,729 (32.2\%) were first-time adopters of this pattern. 330 (3.9\%) stopped using it. Figure~\ref{fig:fig_actiobar_tabs}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/actiobar_tabs}
+	\includegraphics{figures/design-pattern-changes/actiobar_tabs.png}
 	\caption{Two versions of an app titled ``PicsArt'' before (left) and after (right) adopting the Action Bar pattern with Tabs.}
 	\label{fig:fig_actiobar_tabs}
 \end{figure}
@@ -436,7 +436,7 @@ Among them, 1,257 (28.4\%) added it for the first time and only 98 (2.2\%) of th
 Figure~\ref{fig:fig_upnav}
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/upnav}
+	\includegraphics{figures/design-pattern-changes/upnav.png}
 	\caption{Two versions of an app titled ``Buscape'' before (left) and after (right) adopting the Up Navigation pattern. The Up navigation button is shown at the top left corner as a left-facing caret next to the app icon.}
 	\label{fig:fig_upnav}
 \end{figure}
@@ -462,7 +462,7 @@ We found 1,183 apps used the Navigation Drawer.
 Among them, 771 (65.2\%) added it for the first time and only 37 (3.1\%) of the apps stopped using this pattern. Figure~\ref{fig:fig_drawer} shows an example of an app before and after using this pattern.
 \begin{figure}[!t]
 	\centering
-	\includegraphics{figures/design-pattern-changes/drawer}
+	\includegraphics{figures/design-pattern-changes/drawer.png}
 	\caption{Example of an app titled ``Carango - Car Management'' that shows two versions before (left) and after (right) using the Navigation Drawer pattern.}
 	\label{fig:fig_drawer}
 \end{figure}
