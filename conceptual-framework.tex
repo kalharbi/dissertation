@@ -31,10 +31,10 @@ Marketplaces often take the form of an online store for a specific platform that
 Table~\ref{tab:table_marketplaces} shows a list of popular marketplaces for different platforms and the size of each marketplace \cite{statista_app_stores, pinshape, wikipedia_chrome_web_store}.
 \begin{figure}[H]
 	\includegraphics[scale=0.65]{figures/marketplaces/marketplace_single_artifact.png}
-	\caption{The actions that a creator or a user may trigger to change the state of a single artifact. The creator triggers these actions once, while the user may trigger the actions multiple times.}
+	\caption{The actions that a creator or a user may trigger to change the state of a single artifact. The creator may trigger these actions once, while the user may trigger the actions multiple times.}
 	\label{fig:figure_marketplace_actions_single}
 	\includegraphics[scale=0.65]{figures/marketplaces/marketplace_multiple_artifacts.png}
-	\caption{A chain of actions that a creator (C) or a user (U) may trigger to change the state of an artifact (A). The actions triggered by the creator results in a change to the state of the artifact or in a totally new artifact.}
+	\caption{A chain of actions that a creator (C) or a user (U) may trigger to change the state of an artifact (A). The actions triggered by the creator result in a change to the state of an artifact or in a totally new artifact.}
 	\label{fig:figure_marketplace_actions_multiple}
 \end{figure}
 
@@ -46,14 +46,15 @@ I define the key elements in this community as follows:
 \item Artifact (A): Is a digital object made by a creator (C) to perform a task that benefits the user (U). In a marketplace, we will have a list of artifacts: $A=\{A_0, A_1,..., A_n\}$
 \end{enumerate}
 In addition, each of these elements is associated with custom actions that result in important events that describe or change the state of an artifact (depicted in figure~\ref{fig:figure_marketplace_actions_single}).
-To model the actions that change the state of an artifact, consider a single artifact published at a marketplace by a single creator and used by multiple users.
-This artifact can be a simple calculator app released in a mobile marketplace at some point of time, downloaded by multiple users, but never received an update.
-This app represents the simplest form of the single-snapshot, and the time of observation is not considered important.
-Installing this app now will always show the exact same view taken in its first and only version.
-Thus, the view of the single-snapshot always matches the view of the time of its inception.
-While marketplaces contain a considerable amount of artifacts that correspond to the ``single-snapshot'' model, a significant amount of artifacts are ever changing and thus do not fit into this model.
+To understand the actions that may change the state of an artifact in a marketplace, let's consider a single artifact published at a marketplace by a single creator and used by multiple users.
+This artifact can be a simple calculator app released in a mobile marketplace at some point in time, downloaded by multiple users, but never received an update.
+This app represents the simplest form of the single snapshot view, where the time of observation is not considered important.
+Installing this app now will almost match the exact same view taken in its first and only version with the exception of a few properties (e.g., reviews and ratings).
+Thus, observing an artifact using the single snapshot approach will almost match the observation at the time of its inception.
+While marketplaces contain a considerable amount of artifacts that correspond to the single snapshot view, a significant amount of artifacts are ever changing.
+Hence, we need a different model to describe them.
 
-The nature of the marketplace is described as a dynamic sequence of events that results in complex changes to collection of artifacts.
+The nature of the marketplace is described as a dynamic sequence of events that results in complex changes to a collection of artifacts.
 For instance, consider an app that was published in a marketplace by a single creator, used by multiple users, reacted to multiple events, and evolved over time receiving multiple changes.
 Figure~\ref{fig:figure_marketplace_actions_multiple} attempts to capture the factors and events that may contribute to the dynamic nature of the artifacts in the marketplace.
 In this case, the creator's actions will often result in either a new artifact or a change to the state of the existing artifact, while the user's actions only result in a change to the state of the artifact (e.g., seen, used, recommended, etc.).
@@ -66,23 +67,23 @@ This stems from the uncertainty in the events that led to a change in the state 
 The work and contributions presented in this dissertation aim to address the lack of data issue and motivate the creation of data-driven systems to answer complex analytical questions. 
 
 \section{The Key Dimensions}
-Although Chapter 3 provides a detailed review on previous related work, it is worth noting here that the vast majority of prior work in this area falls under the approach of studying the first model I referred to as the ``single-snapshot'' model.
+Although Chapter 3 provides a detailed review of previous related work, it is worth noting here that the vast majority of prior work in this area falls under the approach of studying the first model I referred to as the ``single snapshot'' model.
 While prior work in analyzing the content of marketplaces has yielded valuable results, it is often limited to the ``current moment'' of the finding.
-The lack of investigating the dynamic and ephemeral nature of the artifacts in the marketplace leaves us unable to answer critical questions (e.g., how can we answer questions like: How did we get to this finding? Does this finding imply better outcome compare to the past? Can we predict if a different outcome is most likely to happen in the future?).
+The lack of investigating the dynamic and ephemeral nature of the artifacts in the marketplace leaves us unable to answer critical questions. For instance, we may not be able to answer questions like: How can we answer questions like: How did we get to this finding? Does this finding imply better outcome compare to the past? Can we predict if a different outcome is most likely to happen in the future?.
 By viewing the digital marketplace as a dynamic, ever-evolving system, it opens up a new space for designing and conducting novel analyses to gain insights about this system, insights that are not possible with a single-snapshot view.
 In this section, I describe the design space for such analysis methods for dynamic digital marketplaces.
 To the best of my knowledge, this represents the first attempt to systematically map out this space.
-The major dimensions of this space are: time resolution, inclusion criteria, and depth.
+The major dimensions of this space are time resolution, inclusion criteria, and depth.
 
 \subsection{Time Resolution}
 Given the large amount of artifacts in marketplaces, a large number of observations may be made at different time points.
 The first step in analyzing time series data is the selection of a specific frequency time span.
 The precision of selecting a measurement of time is highly specific to the data analysis task.
-This comes from the fact that different measurements of time frequency result in different observations.
+This comes from the fact that different measurements of time-frequency result in different observations.
 In some cases, taking a longer measurement such as at each year or quarter will reveal patterns about slow changes.
 This approach could be useful in observing slow changes and reporting on trends over a relatively longer period of time.
 For example, when analyzing a list of artifacts in a marketplace, we can ask questions after taking a measurement at each year with respect to a specific design or development property.
-This could enable us to ask questions like: what is the most popular design property in a given year? how popular is it in a different year? what was the increase in its popularity in another year?
+This could enable us to ask questions like what is the most popular design property in a given year? How popular is it in a different year? What was the increase in its popularity in another year?
 In some cases, adjusting the measurement to a shorter period of time (e.g., monthly, weekly) may be considered a convenient way to sharpen the observations.
 This short measurement is particularly useful in observing fast changes to digital artifacts in a marketplace.
 For instance, we can ask questions like: what is the most changing design or development property over a given period? what are the top artifacts that made changes to this property?
@@ -94,7 +95,7 @@ This problem has been studied extensively in statistics but it is worth to brief
 One might begin by taking the approach of collecting the entire artifacts in the marketplace (i.e. conducting a census).
 While it is obvious that this approach is expensive and requires lots of resources, there are reasons that his may not be the best approach.
 The first reason is that access to the entire population is only possible to collect by the owners of the marketplace.
-The second reason is that the population of artifacts change constantly in response to different actions and events, which means this approach will never result in a perfect measure of the population.
+The second reason is that the population of artifacts changes constantly in response to different actions and events, which means this approach will never result in a perfect measure of the population.
 The more reasonable approach, however, is to collect a sample of the entire population of artifacts.
 Sampling is easy to obtain and does not exhaust a lot of resources.
 However,  sampling is often subject to error and bias.
@@ -106,7 +107,7 @@ There are a few sampling methods to consider and ensure that our sample is a rep
 The commonly applied method is to randomly select artifacts from the marketplace such that each case is likely to be selected.
 For example, one might start by taking a random sample of artifacts in a marketplace based on a randomly selected search terms.
 If our sample does not suffer from sampling bias, we can generalize the observation to the entire population of artifacts.
-The chosen inclusion criteria of our sample has to result in a representative sample of the population in order for the conclusion to be more reasonably valid.
+The chosen inclusion criteria of our sample must result in a representative sample of the population in order for the conclusion to be more reasonably valid.
 
 \subsection{Depth}
 This dimension is concerned with the internal and external parts an artifact is composed of.
@@ -120,9 +121,9 @@ An important characteristic of the changes in a digital marketplace is that a ch
 For example, a developer may add changes to the functionality of the artifact.
 This change may require changes to the data of the visual appearance to make it visible to users.
 This change may also result in another change at the listing information level to promote the addition to users.
-Therefore, we need consider all the parts that compose the artifact in order to understand the changes that occur to them over time and gain useful insights.
+Therefore, we need to consider all the parts that compose the artifact in order to understand the changes that occur to them over time and gain useful insights.
 
 \section{Summary}
 In this chapter, I formally defined the digital marketplace, its key elements, and how changes take place.
-I discussed the limitations and problems that may arise when considering a single-snapshot approach.
+I discussed the limitations and problems that may arise when considering a single snapshot approach.
 I described how artifacts can be analyzed using a deep and longitudinal approaches.
