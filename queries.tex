@@ -17,14 +17,14 @@ In this chapter, I discuss Sieveable's capabilities, how queries can be formulat
 \section{Search Queries}
 I briefly described the syntax of the search queries in the previous chapter.
 In this section, I describe the syntax in more detail and highlight important search features.
-Sieveable uses a SQL-like declarative query syntax.
+Sieveable uses an SQL-like declarative query syntax.
 The syntax is composed of three main clauses:
 \begin{itemize}
 	\item \textit{MATCH} The app to match.
 	\item \textit{WHERE} The search condition.
 	\item \textit{RETURN} The results to return.
 \end{itemize}
-The \textit{MATCH} clause defines the apps to match for the given search conditions.
+The \textit{MATCH} clause defines the apps to match the given search conditions.
 One can retrieve all app versions by simply writing:
 \begin{minted}{xml}
 MATCH app
@@ -88,7 +88,7 @@ Listing~\ref{lst:complete_query_example} shows a query that combines all these f
 \end{listing}
 
 In the next sections, I describe how Sieveable can be used in different scenarios to answer analysis questions in three areas: UI design, security, and program analysis.
-The gaol is to highlight the utility of Sieveable and how it simplifies the analysis task to a simple search query. 
+The goal is to highlight the utility of Sieveable and how it simplifies the analysis task to a simple search query. 
 
 \section{Design Queries}
 % we have lots of those
@@ -189,7 +189,7 @@ For example, we can use the following query to find apps that request 11 or more
 \section{Program Analysis Queries}
 Static program analysis tools are used to examine the source code statically to detect vulnerabilities and possible runtime errors.
 Perhaps the most common approach applied in static analysis is searching plain text source files for lines matching a string.
-Opening a large number of files, scanning them for matches and combing the results with other parsing tools (e.g., UI and Manifest) is a frustrating process. 
+Opening a large number of files, scanning them for matches and combining the results with other parsing tools (e.g., UI and Manifest) is a frustrating process. 
 In addition, finding a sample of apps that match a given criterion (e.g., permissions, UI structure) along with the source code text search is a challenging search task.
 Static analysis researchers are still constrained by the lack of a large-scale comprehensive search systems to work with.
 Sieveable's complete view of the app helps researchers find samples by multiple search criteria and focus their efforts on designing more rigorous static analysis tools.
