@@ -91,22 +91,25 @@ In the next sections, I describe how Sieveable can be used in different scenario
 The goal is to highlight the utility of Sieveable and how it simplifies the analysis task to a simple search query. 
 
 \section{The Retrieval Task and Formulating Search Queries}
-Sieveable as a retrieval system inherits limitations that exist in information retrieval (IR) systems.
-It is a widely-acknowledged limitation of any IR system that the user has to know a head of time what she is looking for and translates that into a search query.
-Query formulation is an essential part of any IR system; unfortunately, it is not a transparent process to an analyst or a researcher.
+Sieveable inherits the limitations that exist in information retrieval (IR) systems.
+It is a well-known limitation of any IR system that the user has to know ahead of time what she is looking for and translates that into a search query.
+Query formulation is an essential part of any IR system; unfortunately, it is not a transparent process to an analyst or a researcher whose search goal is to find examples of visual design or development concepts.
 The retrieval task is a complex task that consists of identifying an example of interest, translating that into a search query, submitting the query into an IR system, and examining the results for validation \cite{jones1997readings}.
 Generally, domain expertise plays an important factor that could result in a successful retrieval task.
 The process of translating a high-level design or development concept into a search query is a complex, manual process.
 For instance, in UI design analysis, this task can be initiated when an analyst observes an interesting visual design in an app.
 The hierarchal structure of this visual design can be revealed by dynamically inspecting the UI of the running app \cite{hierarchy_viewer} or by statically reverse engineering the app \cite{apktool}.
 Once the hierarchal structure is revealed (i.e., which combination of views are used), it can be used as an example UI syntax in the Sieveable's search query.
-Similarly, in code analysis, an analyst may identify a problem in using an API from reading the documentation or a question-and-answer website.
-The next step is to articulate the problem and translate it into a search query:
+Similarly, in code analysis, an analyst may identify a problem associated with a specific API by reading the documentation or posts on question-and-answer websites.
+The next step is to articulate the problem and translate it into a search query in Sieveable:
 \begin{minted}{xml}
-<code class="the_fully_qualified_name" method=`"method_name" />
+MATCH app
+WHERE
+  <code class="the_fully_qualified_class_name" method="method_name" />
+RETURN app
 \end{minted}
 It is important to emphasize here that Sieveable does not attempt to address the difficult task of turning a high-level design concept into a search query.
-However, it assumes that a user has the knowledge and expertise to overcome this inherit limitation, so she can focus on turning the more complex analysis task into a search query problem.
+It builds on the assumption that a user has the knowledge and expertise to overcome this inherent limitation, so she can focus on turning the more complex analysis task into a search query problem.
 
 \section{Design Queries}
 % we have lots of those
