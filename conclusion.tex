@@ -21,14 +21,29 @@ Some highlights of my findings include:
 \section{Future Work}
 There are a number of promising future directions for the work presented in this dissertation.
 
-\subsection*{Ranking Algorithms:}
+\subsection*{Leveraging Dynamic Analysis}
+A key inherent limitation of Sieveable is the fact that an analyst needs to know what she is looking for and translates that into a search query.
+This limitation can be overcome by leveraging dynamic analysis tools.
+The dynamic or runtime-based analysis involves running the app and analyzing its visual design or behavior.
+This can be applied by creating a dynamic analysis platform that uses a collection of virtual mobile devices and paid crowds that are capable of translating visual design examples into search queries.
+However, not all visual design concepts can be translated into search queries that can be submitted into a static-analysis-based retrieval system.
+For instance, UI screen transitions and animations are hard to capture because they involve complex dynamic, event-based changes.
+Exploring this area and the possibility of combining the strengths of both static and dynamic analysis could result in novel systems and new kind of applications.
+
+\subsection*{Systematic Evaluation Studies}
+I demonstrated the benefits of the deep and longitudinal approach by conducting a diverse number of analyses in three domains: visual design, mobile accessibility, and privacy. 
+This exploration highlights the potential in going beyond that and applying comprehensive studies to identifying key problems in these areas.
+For instance, accessibility assessment involves many complex considerations for multiple situations to deem an app accessible.
+A systematic investigation that applies advanced static and dynamic analysis techniques could provide us with insights to address serious problems in this area.
+
+\subsection*{Ranking Algorithms}
 The number of apps has increased dramatically in mobile marketplaces.
 As a result, finding a new and well-designed app is becoming an exercise in frustration.
 Most if not all existing search ranking algorithms do not take into account apps' internal data when ranking search results.
 Search systems miss a great opportunity in creating novel ranking algorithms based on apps' data.
 Employing new ranking factors such as accessibility, design, privacy, etc. could lead to significant benefits to users.
 
-\subsection*{Personalized Recommender Systems:}
+\subsection*{Personalized Recommender Systems}
 The existing recommender systems in marketplaces do not recommend apps based on user's preferences.
 It will be useful to recommend an app to a user if it matches her preferences.
 Users have different visual aesthetic or privacy preferences.
