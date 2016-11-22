@@ -1,6 +1,6 @@
 \chapter{Sieveable: A Scalable Platform for Mining Mobile Applications}
 \label{ch:sieveable_chapter}
-As the number of mobile apps continue to proliferate in marketplaces, the need to study them at large-scale has begun to receive increased attention. 
+As the number of mobile apps continues to proliferate in marketplaces, the need to study them at large-scale has begun to receive increased attention. 
 Most of the prior work in this area is limited to a single view of the data  and lacks a  holistic view of the apps. 
 In addition, data-driven systems are largely constrained by the availability of samples and efficient indexing.
 This chapter presents Sieveable, a multi-view search engine for Android apps.
@@ -19,7 +19,7 @@ These apps have become a valuable data source to mine and extract insight from i
 In the recent years, there has been a noticeable amount of research activities on how to extract meaningful insights from apps data.
 The research in mining mobile apps has been dominated by three single views.
 First, researchers have mined the listing details data (metadata) of apps such as ratings and user reviews to perform sentiment analysis and help developers make informed decisions supported by data \cite{fu_2013_KDD,chen_2014_ICSE,kong_2015_CCS}. 
-Others have created tools and commercial services to assist app developers and publishers in better understanding of listing details data \cite{appfigures,applause,appannie}.
+Others have created tools and commercial services to assist app developers and publishers in a better understanding of listing details data \cite{appfigures,applause,appannie}.
 Second, researchers have mined user interface (UI) design data such as styles and layouts of thousands of apps to gain insights into their design patterns \cite{shirazi_EICS_2013} and my work in chapter~\ref{ch:mining_design_changes_chapter}.
 Third researchers have also mined the source code of apps to learn about malicious behavior and protect users' privacy-sensitive data \cite{zhou_2012_SP_dissecting,lu_2012_CCS,Arzt_2014_PLDI}.
 What is missing in prior research is an approach that takes both a holistic view (design and development) and temporal view (multiple versions) of the apps.
@@ -36,7 +36,7 @@ In security analysis, a function could be determined, through program analysis, 
 But it is often hard to judge if the sensitive operation is warranted from the program view alone.
 By also taking a view of the design, one may examine which button may be linked to this sensitive operation and whether the button's label legitimizes such use: for example, ``Send'' for sending an SMS message.
 % Temporal analysis
-Furthermore, the increase number of app updates published to marketplaces has largely gone unobserved. 
+Furthermore, the increasing number of app updates published to marketplaces has largely gone unobserved. 
 By only considering a single version of the app, one cannot form a deep understanding of the emerging trends in mobile design and development.
 % Scalable
 Supporting multi-view temporal analysis of apps is always challenging because it requires a scalable infrastructure for integrating multiple heterogeneous data sources.
@@ -51,7 +51,7 @@ I discuss a new query language with a declarative, ``example-based'' syntax.
 Using this language, analysts could quickly retrieve a sample from a large corpus of apps that meet certain criteria with respect to the listing view, design view, and program view in an integrated manner.
 Prior to Sieveable, each of these analyses would take days of effort in writing custom scripts and running them on a cluster of servers (my work in chapter~\ref{ch:mining_design_changes_chapter}).
 With Sieveable, each analysis task can be expressed as a search query and results can be obtained in a matter of minutes.
-The chapter continues as follows. An overview of our system, detail description of its implementation to enable a new multi-view analytical queries.
+The chapter continues as follows. An overview of our system, detail description of its implementation to enable a new, multi-view analytical queries.
 
 
 \section{System Overview}
@@ -80,7 +80,7 @@ In this section, we describe the key requirements of our system and its core com
 \end{table*}
 
 \subsection{Requirements}
-We identify four main requirements that drive the technical development of the our system:
+We identify four main requirements that drive the technical development of our system:
 \begin{itemize}
 	\item \textbf{Generalizable:}
 	Given the large and diverse ecosystem of the Android platform, our search engine must be general enough to meet diverse user search goals.
@@ -95,7 +95,7 @@ We identify four main requirements that drive the technical development of the o
 	
 	\item \textbf{Extensible:}
 	The system must be designed to be modular and extensible to easily extend its search capabilities.
-	To achieve this goal, Sieveable uses a modular plug-in architecture where each search level (e.g., UI search, code search) is a separate module that can be incorporated to the search system.
+	To achieve this goal, Sieveable uses a modular plug-in architecture where each search level (e.g., UI search, code search) is a separate module that can be incorporated into the search system.
 	By delegating search tasks into modules, a developer may add a new plug-in to extend the search system.
 	For example, a developer may create a search plug-in for finding open source Android apps hosted on GitHub.
 \end{itemize}
@@ -109,8 +109,20 @@ We download the Android Application Package (APK) file for apps from the officia
 For each APK file we download and add to the dataset, a web crawler is run to obtain its listing details web page.
 Next, we parsed the listing details HTML page to extract store listing values.
 In order to expose the app's UI and code structure, we run a reverse-engineering tool to decompile it, which results in a directory tree of app files that make up the app. 
-With more than one year effort, we managed to collect 452,775 apps with multiple versions\footnote{Note that sometimes the crawler was down, so it may have missed a number of updates.}.
-
+With more than one year effort, we managed to collect 452,775 apps with multiple versions. Note that sometimes the crawler was down, so it may have missed a number of updates.
+Figure~\ref{fig:fig_dataset_app_versions} shows the number of app versions in our dataset, and figure~\ref{fig:fig_dataset_app_release_downloads} shows the total apps by release date and download count.
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{figures/sieveable-deep-search/dataset_app_versions.png}
+	\caption{The total number of app versions in the collected dataset.}
+	\label{fig:fig_dataset_app_versions}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{figures/sieveable-deep-search/dataset_app_release_downloads.png}
+	\caption{The total number of apps (multiple versions) in the dataset grouped by download count and the calendar quarter in which they are released. Three download count groups are used: top (1M downloads or more), middle (100K or more and less than 1M downloads), bottom (less than 100K downloads).}
+	\label{fig:fig_dataset_app_release_downloads}
+\end{figure}
 \subsubsection{Features Extraction}
 Once an app is downloaded and decoded, we run a set of tools to extract features at four levels:
 a) Listing details level: it includes information defined in the app's marketplace listing web page.
@@ -131,7 +143,7 @@ We use text indices on specific fields (description, what's new section, reviews
 
 \subsubsection{Query Language Specification}
 \underline{\textbf{Query Syntax:}}
-Sieveable uses a SQL-like declarative query syntax. The syntax is composed of three main clauses:
+Sieveable uses an SQL-like declarative query syntax. The syntax is composed of three main clauses:
 \begin{itemize}
 	\item \textit{MATCH} The app to match. 
 	\item \textit{WHERE} The search condition.
@@ -146,7 +158,7 @@ Example:
 	    </LinearLayout>
 	RETURN app
 \end{minted}
-The \textit{MATCH} clause defines the apps to match for the given search conditions.
+The \textit{MATCH} clause defines the apps to match the given search conditions.
 The \textit{WHERE} clause defines specific search conditions. 
 A search condition in its simplest form is an example of a single listing details field, UI element, manifest element, or an API call.
 Multiple search conditions can be combined together allowing for a deep search across multiple levels.
@@ -191,7 +203,7 @@ The plan is an order of steps to query each index and data store (listing, UI, m
 Query parts are executed by collection finder plug-ins (e.g., find by UI Index, find by UI DOM, find by code, etc.).
 Collection finders return a set of app ids that matched the given query.
 Sieveable computes the intersection of app ids to avoid scanning entire collections.
-This also ensures that the final query results only contain ids for apps matched by all query conditions.
+This also ensures that the final query results only include apps' Ids that met all query part conditions.
 
 Figure~\ref{fig:fig_query_execution} shows the execution sequence of the query in Listing~\ref{lst:query_example} and the number of apps scanned by each collection.
 The entire dataset contains over 400,000 apps.
@@ -231,13 +243,13 @@ Google has no official API for downloading APK files.
 We used an unofficial API\footnote{http://github.com/Akdeniz/google-play-crawler} to collect APK files.
 When an APK file is downloaded we run the Android Asset Packaging Tool (aapt) on the file to obtain its package name and version code.
 We use a combination of the package name and version code as a unique identifier for each app.
-APK files are stored in the file system while their ids and disk paths are stored in a MongoDB collection for fast retrieval.
+APK files are stored in the file system while their Ids and disk paths are stored in a MongoDB collection for fast retrieval.
 Once an APK file is downloaded, we run a web crawler to fetch the most recent listing details web page of the app.
 We parse the listing details fields and save them in another MongoDB collection.
 
 \subsection{Feature Extractors}
 We built a set of command line tools to extract features from the APK files.
-First, we use apktool \cite{apktool}, an open-source reverse engineering tool, to decode the apps and obtain their source files.
+First, we use apktool \cite{apktool}, an open-source tool for reverse engineering binary Android applications.
 Second, we run a custom UI parser that parses layout files and resolves any references to external resources (e.g., \texttt{android:text="@string/variable"}) or embedded layouts (using \texttt{<include/>} and \texttt{<merge/>} tags).
 The parser produces a single XML file that contains the entire app UI tree, including all files.
 This is especially important when performing DOM matching queries since it eliminates the need to load multiple layout files into memory when performing such queries.
@@ -255,7 +267,6 @@ Below is a snippet from an XML file generated for the YouTube app.
     </Directory>
 </App>
 \end{minted}
-
 Third, we extract all API calls from the smali files, a human readable assembly-like language for the disassembled byte code.
 We save the extracted API calls in one text file per app.
 
@@ -294,8 +305,8 @@ We use an external Zookeeper \cite{zookeeper} cluster of five nodes to synchroni
 Sieveable UI and Manifest search queries are written in  ``example-based'' syntax.
 We implement a custom DOM matchers module to navigate the XML DOM tree and select DOM elements with a particular DOM structure.
 The DOM matchers perform a jQuery like DOM manipulation.
-While loading DOM files for complex queries is often considered expensive, the use of hierarchical indices reduce the number of false candidates significantly.
-However, parsing the DOM for large number of files has an inevitable memory and system resources overhead.
+While loading DOM files for complex queries is often considered expensive, the use of hierarchical indices reduces the number of false candidates significantly.
+However, parsing the DOM for a large number of files has an inevitable memory and system resources overhead.
 Therefore, Sieveable uses a configurable default limit of 50 results per a given search query and return an inalterable cursor to the client to receive the entire query results.
 
 \subsection{RESTful API}
@@ -306,7 +317,7 @@ For an easy query access, Sieveable has both a command line and web client appli
 \section{Summary}
 This chapter presented Sieveable, a multi-view search engine for apps on a large-scale.
 It discussed the importance of searching and mining apps across multiple views.
-For the first time, Sieveable can help users execute deep search queries (illustrated in Chapter \ref{ch:findings_chapter}) and apply data driven approaches with a holistic view of apps at large-scale that could yield valuable results.
+For the first time, Sieveable can help users execute deep search queries (illustrated in Chapter \ref{ch:findings_chapter}) and apply data-driven approaches with a holistic view of apps at large-scale that could yield valuable results.
 Sieveable has been deployed into a distributed computing infrastructure.
 For more information on using Sieveable including source code access, please visit:
 \url{http://github.com/sikuli/sieveable}.
