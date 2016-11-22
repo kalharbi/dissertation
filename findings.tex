@@ -4,9 +4,9 @@ The trends in designing and developing mobile applications are always changing a
 Platform owners regularly introduce new features, remove previous ones, and change their best practices and guidelines.
 Since all of these changes are observed at some points in time, it is necessary to apply a temporal (time series) based analysis to capture interesting events and draw more meaningful statistical insights.
 Temporal analysis enables us to ask new questions and understand the changes in the design and development of mobile applications.
-The lack of effective retrieval systems and resources that provide access to the temporal nature of applications have limited the questions we might ask and resulted in studies that focus on a single snapshot in time.
+The lack of effective retrieval systems and resources that provide access to the temporal nature of applications have limited the questions we might ask and led to studies that focus on a single snapshot in time.
 Sieveable is what gives us access to the temporal nature of mobile applications and helps us to answer diverse analysis questions.
-In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time in three areas: UI design, accessibility, and privacy.\footnote{The raw data, source code, additional analyses, and interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
+In this chapter, I present some illustrative temporal analysis examples to understand how apps are evolved over time in three areas: UI design, accessibility, and privacy\footnote{The raw data, source code, additional analyses, and interactive data visualizations are available at https://github.com/sieveable/sieveable-mining}.
 
 \section{Visual Design Mining}
 
@@ -17,8 +17,8 @@ A year after the announcement, Google introduced an official library called the 
 Now, it has been over two years of efforts invested in creating concepts and tools to promote the use of this design language.
 We can use Sieveable to understand how these concepts are adopted over time and ask questions like:
 What is the state of adopting material design patterns?
-Did these concepts get adopted immediately by developers or at slow pace?
-Are there any factors that may have contributed into a sudden increase or decrease in adoption?
+Did these concepts get adopted immediately by developers or at a slow pace?
+Are there any factors that may have contributed to a sudden increase or decrease in adoption?
 
 \subsection{Material Design Components}
 In this section, I present a set of analyses on the adoption rate of two major material design components: the floating action button and the navigation drawer.
@@ -36,7 +36,7 @@ The navigation drawer is perhaps the first design pattern that was introduced be
 \end{figure}
 The Floating Action Button (FAB) is a circled button floating above the UI to promote the primary action in the app (Figure~\ref{fig:figure_fab_screenshot}).
 While developers can create a custom FAB with material design style, there are a few libraries that simplify adding this widget.
-To find apps that have this UI component, one will write custom scripts to parse large number of UI layout files and count for all possible implementation options.
+To find apps that have this UI component, one will write custom scripts to parse a large number of UI layout files and count for all possible implementation options.
 This task is achieved by writing a simple search query in Sieveable.
 We can use Sieveable to evaluate implementation alternatives and help developers make an informed decision of using a specific library over others.
 With Sieveable, one can examine the popularity of a specific UI library within any time window.
@@ -81,7 +81,7 @@ I found that the majority of these apps have a low number of downloads (89.81\% 
 	{{\includegraphics[scale=0.1]{figures/findings/closed-nav-drawer-kitchenstories.png} }}%
 	\qquad
 	{{\includegraphics[scale=0.1]{figures/findings/open-nav-drawer-kitchenstories.png} }}%
-	\caption{Example of an app with a closed navigation drawer (left) and an open navigation drawer (right).}
+	\caption{An example of an app with a closed navigation drawer (left) and an open navigation drawer (right).}
 	\label{fig:nav_drawer}
 \end{figure}
 The navigation drawer is a hidden menu panel that can be revealed by tapping on the app icon menu (also known as the hamburger icon), which causes the panel to slide from left to right (figure~\ref{fig:nav_drawer}).
@@ -121,11 +121,11 @@ Analyzing apps over time enabled us to capture a correlation between design chan
 UI design patterns may become more or less popular over time, but they may react positively to a related platform event.
 This phenomenon would have been missed had we considered a single version of the app.
 Our finding suggests that the release of an official library (the design support library in this case) caused the adoption rate of the navigation drawer for apps that are less popular to soar.
-We observed that apps with less download counts maintained an adoption rate below 10\% before the release of the official library, and that adoption doubled to over 20\% after the release of the library.
+We observed that apps with fewer download counts maintained an adoption rate below 10\% before the release of the official library, and that adoption doubled to over 20\% after the release of the library.
 This event allowed developers of the less popular apps to reduce the gap with top apps in design adoption.
 \begin{figure}[H]
 	\includegraphics[scale=0.5]{figures/findings/navdrawer_by_quarter_grouped_by_downloads.png}
-	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x axis shows the calendar quarter of the release date in which the adoption is observed, and the y axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
+	\caption{The percentage of apps that started adopting the navigation drawer grouped by three download count groups: most, middle, and least downloaded apps. The x-axis shows the calendar quarter of the release date in which the adoption is observed, and the y-axis shows the percentage of apps that adopted it. The percentage value is computed by dividing the number of adopted apps in each quarter over the total of apps released in each quarter. The time of major platform events is also marked in the chart.}
 	\label{fig:navdrawer_quarter_download}
 \end{figure}
 
@@ -134,7 +134,7 @@ The users of mobile devices are diverse with different physical capabilities inc
 Some users may not be able to touch or see the screen, distinguish between its colors, hear a sound from the app, or speak back to the app.
 Apps that are inaccessible to users with disabilities may exclude them from using important services and social activities.
 Android features a set of accessibility APIs that help developers build accessible apps for users who have special needs.
-Many research and development efforts are invested to address various accessibility issues and enhance existing system wide accessibility services.
+Many research and development efforts are invested in addressing various accessibility issues and enhance existing system-wide accessibility services.
 Platform owners provide accessibility services, APIs, and guidelines to help developers improve the accessibility of their apps and increase their audiences.
 But what is the impact of these efforts?
 Are these guidelines effective?
@@ -172,7 +172,7 @@ fontsize=\footnotesize
 ]
 {xml}{figures/source-code/image-btn-content-description.txt}
 
-\noindent The first query is for finding apps that have an image button, while the last two queries are for finding apps that added a text label to an image button statically in layout files or dynamically in source code.
+\noindent The first query is for finding apps that have an image button, while the last two queries are for finding apps that added a text label to an image button statically in layout files or dynamically in the source code.
 We can analyze the results of these search queries and compute the ratio of labeled image buttons in each app.
 We compute the percentage of accessible image buttons in each app as follows:
 $ coverage = \frac{image\_buttons\_with\_labels}{total\_image\_buttons}  $.
@@ -258,7 +258,7 @@ The first two permissions are found to be among the most frequently used permiss
 In addition, I analyzed the apps that had an unusual total of requested permissions (a sum total that falls within the most 10 requested permission counts).
 I found that 90\% of these apps have a download count of 100,000 or less and only one app (the T-Mobile official app) that has requested 86 permissions and had 10 million downloads.
 The app with the highest requested permission (122 permissions) is called Webkey (package name is com.webkey).
-This app is listed under the tools category, had 100,000 downloads, 4.44 star rating, and claims that it provides a remote control of the device from any browser.
+This app is listed under the tools category, had 100,000 downloads, 4.44 star-rating, and claims that it provides a remote control of the device from any browser.
 Finally, I discovered that the average number of requested permission keeps increasing over the years (see table~\ref{tab:average_permissions_years}).
 This suggest that developers tend to add more permissions over the years which make users more susceptible to privacy and security problems over time.
 \begin{table*}[t]
@@ -276,7 +276,7 @@ This suggest that developers tend to add more permissions over the years which m
 		2016 & 8.72 & 5.97 & 40,435 \\
 		\hline
 	\end{tabular}
-	\caption{Summary statistics on the total number of permissions requested by apps over the years}
+	\caption{Summary statistics on the total number of permissions requested by apps over the years.}
 	\label{tab:average_permissions_years}
 \end{table*}
 \subsection{Analyzing Added Permissions}
@@ -290,7 +290,7 @@ On average, they added 2.28 permissions (standard deviation is 2.57).
 \end{figure}
 \begin{figure}[H]
 	\includegraphics[scale=0.60]{figures/findings/added_permissions_over_time.png}
-	\caption{The five most added permissions in each year. The x axis shows how many times the permission was added in each year.}
+	\caption{The five most added permissions in each year. The x-axis shows how many times the permission was added in each year.}
 	\label{fig:added_permissions_over_time}
 \end{figure}
 Figure~\ref{fig:added_permissions_downloads} shows the number of added permissions for apps by three download count groups (top, middle, bottom).
@@ -309,10 +309,10 @@ It was later deprecated in API 23 (Android 6.0), so it was not seen among the fi
 These findings suggest that apps tend to add more permissions related to either dependency or ad libraries rather than core app features.
 
 \section{Summary}
-This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at unprecedented levels of analyses.
+This chapter has demonstrated how Sieveable simplified the task of analyzing apps over time at an unprecedented levels of analyses.
 I presented a number of analyses in three main areas: design, accessibility, and privacy.
 In design, the release of official design helper libraries enabled apps that had few downloads to reduce the gap with the top downloaded apps in adopting best design practices.
 In accessibility, all apps including the most downloaded ones had significant accessibility problems.
 In privacy, I uncovered that apps with few downloads tend to request either a small number of permissions, which are common in ad libraries, or a rather large and unusual number of permissions compared to the apps with high download counts.
-Furthermore, the top most added permissions in each year are the ones often required by ad libraries, which raises privacy concerns.
-These analyses provided insights on how apps changed at unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over multiple app versions).
+Furthermore, the most added permissions in each year are the ones often required by ad libraries, which raises privacy concerns.
+These analyses provided insights on how apps changed at an unprecedented level than previous research, both in terms of the depth of analysis (i.e. listing details, design, and code data) and the time studied (over multiple app versions).
